@@ -1,0 +1,10 @@
+C:\Projects\FrodUtils\FrodLib.Core\bin\Debug\FrodLib.Core.dll
+C:\Projects\FrodUtils\FrodLib.Core\bin\Debug\FrodLib.Core.pdb
+C:\Projects\FrodUtils\FrodLib.Core\bin\Debug\System.Collections.Immutable.dll
+C:\Projects\FrodUtils\FrodLib.Core\bin\Debug\System.Collections.Immutable.xml
+C:\Projects\FrodUtils\FrodLib.Core\obj\Debug\FrodLib.Core.csprojResolveAssemblyReference.cache
+C:\Projects\FrodUtils\FrodLib.Core\obj\Debug\FrodLib.Resources.StringResources.resources
+C:\Projects\FrodUtils\FrodLib.Core\obj\Debug\FrodLib.Core.csproj.GenerateResource.Cache
+C:\Projects\FrodUtils\FrodLib.Core\obj\Debug\FrodLib.Core.csproj.CoreCompileInputs.cache
+C:\Projects\FrodUtils\FrodLib.Core\obj\Debug\FrodLib.Core.dll
+C:\Projects\FrodUtils\FrodLib.Core\obj\Debug\FrodLib.Core.pdb

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8610B5F4-D818-4B51-B7BA-748B914532B4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FrodLib.Tests</RootNamespace>
+    <AssemblyName>FrodLib.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CollectionTests\AVTTreeTests.cs" />
+    <Compile Include="CollectionTests\BinaryTreeTests.cs" />
+    <Compile Include="CollectionTests\CollectionExtensionsTest.cs" />
+    <Compile Include="CollectionTests\IListExtendedTestsImpl.cs" />
+    <Compile Include="CollectionTests\DListTests.cs" />
+    <Compile Include="Common\TemperatureTests.cs" />
+    <Compile Include="CopyTest.cs" />
+    <Compile Include="FractionTests.cs" />
+    <Compile Include="IntervalExtenstionTest.cs" />
+    <Compile Include="NumberExtensionsTest.cs" />
+    <Compile Include="PrimeUtilsTests.cs" />
+    <Compile Include="SortExtensionTest.cs" />
+    <Compile Include="ThrowIfNullTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CollectionTests\SkipListTests.cs" />
+    <Compile Include="TestDataClasses\Address.cs" />
+    <Compile Include="TestDataClasses\Person.cs" />
+    <Compile Include="CollectionTests\BinaryTreeTestImpl.cs" />
+    <Compile Include="TestHelpers\TestDataLoaderHelper.cs" />
+    <Compile Include="TestHelpers\TestHelper.cs" />
+    <Compile Include="SuspendNotificationTest.cs" />
+    <Compile Include="RectTests.cs" />
+    <Compile Include="CollectionTests\QuadTreeTests.cs" />
+    <Compile Include="ReadWriteLockTests.cs" />
+    <Compile Include="PriorityQueueTests.cs" />
+    <Compile Include="ActionSchedulerTests.cs" />
+    <Compile Include="TimeTests.cs" />
+    <Compile Include="UndoredoManagerTests.cs" />
+    <Compile Include="IoCContainerTests.cs" />
+    <Compile Include="ArgumentValidatorTests.cs" />
+    <Compile Include="WorkerQueueTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\BinaryTreeTestData.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\FractionTestData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\IListExtendedTestData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\NumberExtensionTestData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\QuadTreeTestData.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\RectTestData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\SkipListTestData.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FrodLib.Core\FrodLib.Core.csproj">
+      <Project>{93abadc8-b5cb-485c-9896-dd286484b124}</Project>
+      <Name>FrodLib.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FrodLib.NET\FrodLib.NET.csproj">
+      <Project>{0d8d3102-29b3-4301-9b99-9d6c428bbcc3}</Project>
+      <Name>FrodLib.NET</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

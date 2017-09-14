@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<IListExtendedTestData>
+
+  <!-- ADD/REMOVE/ITEMS RANGE TESTS -->
+  <AddRemoveInsertRangeTests>
+    <!-- ADD/REMOVE/ITEMS RANGE TEST 1 -->
+    <AddRemoveInsertRangeTest>
+      <Instructions>
+        <AddRange IsRange="True" >
+          <Range RangeType="System.Int32">
+            <Item value="4" />
+            <Item value="9" />
+            <Item value="1" />
+            <Item value="3" />
+            <Item value="8" />
+            <Item value="10" />
+            <Item value="42" />
+            <Item value="7" />
+            <Item value="666" />
+            <Item value="5" />
+          </Range>
+        </AddRange>
+      </Instructions>
+      <ExpectedCount>10</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="4" />
+          <Item value="9" />
+          <Item value="1" />
+          <Item value="3" />
+          <Item value="8" />
+          <Item value="10" />
+          <Item value="42" />
+          <Item value="7" />
+          <Item value="666" />
+          <Item value="5" />
+        </Range>
+      </ExpectedRange>
+    </AddRemoveInsertRangeTest>
+
+    <!-- ADD/REMOVE/ITEMS RANGE TEST 2 -->
+    <AddRemoveInsertRangeTest>
+      <Instructions>
+        <AddRange IsRange="True" >
+          <Range RangeType="System.Int32">
+            <Item value="4" />
+            <Item value="9" />
+            <Item value="1" />
+            <Item value="3" />
+            <Item value="8" />
+            <Item value="10" />
+            <Item value="42" />
+            <Item value="7" />
+            <Item value="666" />
+            <Item value="5" />
+          </Range>
+        </AddRange>
+        <RemoveRange StartIndex="1" Count="3" />
+      </Instructions>
+      <ExpectedCount>7</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="4" />
+          <Item value="8" />
+          <Item value="10" />
+          <Item value="42" />
+          <Item value="7" />
+          <Item value="666" />
+          <Item value="5" />
+        </Range>
+      </ExpectedRange>
+    </AddRemoveInsertRangeTest>
+
+    <!-- ADD/REMOVE/ITEMS RANGE TEST 3 -->
+    <AddRemoveInsertRangeTest>
+      <Instructions>
+        <AddRange IsRange="True" >
+          <Range RangeType="System.Int32">
+            <Item value="4" />
+            <Item value="9" />
+            <Item value="1" />
+            <Item value="3" />
+            <Item value="8" />
+            <Item value="10" />
+            <Item value="42" />
+            <Item value="7" />
+            <Item value="666" />
+            <Item value="5" />
+          </Range>
+        </AddRange>
+        <RemoveRange StartIndex="0" Count="4" />
+        <AddRange IsRange="True" >
+          <Range RangeType="System.Int32">
+            <Item value="1000" />
+            <Item value="1500" />
+            <Item value="2000" />
+          </Range>
+        </AddRange>
+      </Instructions>
+      <ExpectedCount>9</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="8" />
+          <Item value="10" />
+          <Item value="42" />
+          <Item value="7" />
+          <Item value="666" />
+          <Item value="5" />
+          <Item value="1000" />
+          <Item value="1500" />
+          <Item value="2000" />
+        </Range>
+      </ExpectedRange>
+    </AddRemoveInsertRangeTest>
+
+    <!-- ADD/REMOVE/ITEMS RANGE TEST 4 -->
+    <AddRemoveInsertRangeTest>
+      <Instructions>
+        <AddRange IsRange="True" >
+          <Range RangeType="System.Int32">
+            <Item value="4" />
+            <Item value="9" />
+            <Item value="1" />
+            <Item value="3" />
+            <Item value="8" />
+          </Range>
+        </AddRange>
+        <InsertRange AtIndex="2" IsRange="True">
+          <Range RangeType="System.Int32">
+            <Item value="10" />
+            <Item value="42" />
+            <Item value="7" />
+            <Item value="666" />
+            <Item value="5" />
+          </Range>
+        </InsertRange>
+      </Instructions>
+      <ExpectedCount>10</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="4" />
+          <Item value="9" />
+          <Item value="10" />
+          <Item value="42" />
+          <Item value="7" />
+          <Item value="666" />
+          <Item value="5" />
+          <Item value="1" />
+          <Item value="3" />
+          <Item value="8" />
+        </Range>
+      </ExpectedRange>
+      </AddRemoveInsertRangeTest>
+
+    <!-- ADD/REMOVE/ITEMS RANGE TEST 5 -->
+    <AddRemoveInsertRangeTest>
+      <Instructions>
+        <AddRange IsRange="True" >
+          <Range RangeType="System.Int32">
+            <Item value="4" />
+            <Item value="9" />
+            <Item value="1" />
+            <Item value="3" />
+            <Item value="8" />
+            <Item value="10" />
+            <Item value="42" />
+            <Item value="7" />
+            <Item value="666" />
+            <Item value="5" />
+          </Range>
+        </AddRange>
+        <RemoveRange IsRange="True">
+          <Range RangeType="System.Int32">
+            <Item value="9" />
+            <Item value="3" />
+            <Item value="10" />
+            <Item value="7" />
+            <Item value="100" />
+          </Range>
+        </RemoveRange>
+      </Instructions>
+      <ExpectedCount>6</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="4" />
+          <Item value="1" />
+          <Item value="8" />
+          <Item value="42" />
+          <Item value="666" />
+          <Item value="5" />
+        </Range>
+      </ExpectedRange>
+    </AddRemoveInsertRangeTest>
+  </AddRemoveInsertRangeTests>
+  <!-- END ADD/REMOVE/ITEMS TESTS -->
+  
+  <!-- ADD/REMOVE/INSERT ITEMS TESTS -->
+  <AddRemoveInsertItemsTests>
+    <!-- ADD/REMOVE/INSERT ITEMS TEST 1 -->
+    <AddRemoveInsertItemsTest>
+      <Instructions>
+        <Add value="4" type="System.Int32" />
+        <Add value="9" type="System.Int32" />
+        <Add value="1" type="System.Int32" />
+        <Add value="3" type="System.Int32" />
+        <Add value="8" type="System.Int32" />
+        <Add value="10" type="System.Int32" />
+        <Add value="42" type="System.Int32" />
+        <Add value="7" type="System.Int32" />
+        <Add value="666" type="System.Int32" />
+        <Add value="5" type="System.Int32" />
+      </Instructions>
+      <ExpectedCount>10</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="4" />
+          <Item value="9" />
+          <Item value="1" />
+          <Item value="3" />
+          <Item value="8" />
+          <Item value="10" />
+          <Item value="42" />
+          <Item value="7" />
+          <Item value="666" />
+          <Item value="5" />
+        </Range>
+      </ExpectedRange>
+    </AddRemoveInsertItemsTest>
+
+    <!-- ADD/REMOVE/INSERT ITEMS TEST 2 -->
+    <AddRemoveInsertItemsTest>
+      <Instructions>
+        <Add value="4" type="System.Int32" />
+        <Add value="9" type="System.Int32" />
+        <Add value="1" type="System.Int32" />
+        <Add value="3" type="System.Int32" />
+        <Add value="8" type="System.Int32" />
+        <Insert value="10" type="System.Int32" AtIndex="2" />
+        <Insert value="42" type="System.Int32" AtIndex="2" />
+        <Insert value="7" type="System.Int32" AtIndex="2" />
+        <Insert value="666" type="System.Int32" AtIndex="2" />
+        <Insert value="5" type="System.Int32" AtIndex="2" />
+      </Instructions>
+      <ExpectedCount>10</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="4" />
+          <Item value="9" />
+          <Item value="5" />
+          <Item value="666" />
+          <Item value="7" />
+          <Item value="42" />
+          <Item value="10" />
+          <Item value="1" />
+          <Item value="3" />
+          <Item value="8" />
+        </Range>
+      </ExpectedRange>
+    </AddRemoveInsertItemsTest>
+
+    <!-- ADD/REMOVE/INSERT ITEMS TEST 3 -->
+    <AddRemoveInsertItemsTest>
+      <Instructions>
+        <Add value="4" type="System.Int32" />
+        <Add value="9" type="System.Int32" />
+        <Add value="1" type="System.Int32" />
+        <Add value="3" type="System.Int32" />
+        <Add value="8" type="System.Int32" />
+        <Add value="10" type="System.Int32" />
+        <Add value="42" type="System.Int32" />
+        <Add value="7" type="System.Int32" />
+        <Add value="666" type="System.Int32" />
+        <Add value="5" type="System.Int32" />
+        <Remove value="9" type="System.Int32" />
+        <Remove value="3" type="System.Int32"/>
+        <Remove value="10" type="System.Int32"/>
+        <Remove value="7" type="System.Int32"/>
+        <Remove value="8" type="System.Int32" />
+      </Instructions>
+      <ExpectedCount>6</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="4" />
+          <Item value="1" />
+          <Item value="8" />
+          <Item value="42" />
+          <Item value="666" />
+          <Item value="5" />
+        </Range>
+      </ExpectedRange>
+    </AddRemoveInsertItemsTest>
+
+    <!-- ADD/REMOVE/INSERT ITEMS TEST 4 -->
+    <AddRemoveInsertItemsTest>
+      <Instructions>
+        <Add value="4" type="System.Int32" />
+        <Add value="9" type="System.Int32" />
+        <Add value="1" type="System.Int32" />
+        <Add value="3" type="System.Int32" />
+        <Add value="8" type="System.Int32" />
+        <Add value="10" type="System.Int32" />
+        <Add value="42" type="System.Int32" />
+        <Add value="7" type="System.Int32" />
+        <Add value="666" type="System.Int32" />
+        <Add value="5" type="System.Int32" />
+        <Remove value="4" type="System.Int32" />
+        <Remove value="9" type="System.Int32"/>
+        <Remove value="1" type="System.Int32"/>
+        <Add value="100" type="System.Int32"/>
+        <Insert value="200" type="System.Int32" AtIndex="0" />
+      </Instructions>
+      <ExpectedCount>9</ExpectedCount>
+      <ExpectedRange IsRange="True">
+        <Range RangeType="System.Int32">
+          <Item value="200" />
+          <Item value="3" />
+          <Item value="8" />
+          <Item value="10" />
+          <Item value="42" />
+          <Item value="7" />
+          <Item value="666" />
+          <Item value="5" />
+          <Item value="100" />
+        </Range>
+      </ExpectedRange>
+    </AddRemoveInsertItemsTest>
+  </AddRemoveInsertItemsTests>
+  <!-- END ADD/REMOVE/INSERT ITEMS TESTS -->
+
+  <!-- CLEAR TESTS -->
+  <ClearTests>
+    <!-- CLEAR TEST 1 -->
+    <ClearTest>
+      <Instructions>
+        <Add value="4" type="System.Int32" />
+        <Add value="9" type="System.Int32" />
+        <Add value="1" type="System.Int32" />
+        <Add value="3" type="System.Int32" />
+        <Add value="8" type="System.Int32" />
+        <Add value="10" type="System.Int32" />
+        <Add value="42" type="System.Int32" />
+        <Add value="7" type="System.Int32" />
+        <Add value="666" type="System.Int32" />
+        <Add value="5" type="System.Int32" />
+      </Instructions>
+      <ExpectedCount1>10</ExpectedCount1>
+      <ExpectedCount2>0</ExpectedCount2>
+    </ClearTest>
+  </ClearTests>
+
+  <!-- CONTAINS TESTS -->
+  <ContainsTests>
+    <!-- CONTAINS TEST 1 -->
+    <ContainsTest>
+      <Instructions>
+        <Add value="4" type="System.Int32" />
+        <Add value="9" type="System.Int32" />
+        <Add value="1" type="System.Int32" />
+        <Add value="3" type="System.Int32" />
+        <Add value="8" type="System.Int32" />
+        <Add value="10" type="System.Int32" />
+        <Add value="42" type="System.Int32" />
+        <Add value="7" type="System.Int32" />
+        <Add value="666" type="System.Int32" />
+        <Add value="5" type="System.Int32" />
+      </Instructions>
+      <ContainsValue value="4" type="System.Int32" />
+      <ExpectedResult>true</ExpectedResult>
+    </ContainsTest>
+
+    <!-- CONTAINS TEST 2 -->
+    <ContainsTest>
+      <Instructions>
+        <Add value="4" type="System.Int32" />
+        <Add value="9" type="System.Int32" />
+        <Add value="1" type="System.Int32" />
+        <Add value="3" type="System.Int32" />
+        <Add value="8" type="System.Int32" />
+        <Add value="10" type="System.Int32" />
+        <Add value="42" type="System.Int32" />
+        <Add value="7" type="System.Int32" />
+        <Add value="666" type="System.Int32" />
+        <Add value="5" type="System.Int32" />
+      </Instructions>
+      <ContainsValue value="1000" type="System.Int32" />
+      <ExpectedResult>false</ExpectedResult>
+    </ContainsTest>
+  </ContainsTests>
+
+
+  <!-- COPY TO ARRAY TESTS -->
+  <CopyToArrayTests>
+    <!-- COPY TO ARRAY TEST 1 -->
+    <CopyToArrayTest>
+
+    </CopyToArrayTest>
+  </CopyToArrayTests>
+
+  <!-- RANDOM ACCESS TESTS -->
+  <RandomAccessTests>
+    <!-- RANDOM ACCESS TEST 1 -->
+    <RandomAccessTest>
+
+    </RandomAccessTest>
+  </RandomAccessTests>
+
+
+  <!-- SET CAPACITY TESTS -->
+  <SetCapacityTests>
+    <!-- SET CAPACITY TEST 1 -->
+    <SetCapacityTest>
+
+    </SetCapacityTest>
+  </SetCapacityTests>
+</IListExtendedTestData>

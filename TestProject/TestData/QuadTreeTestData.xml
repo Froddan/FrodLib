@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<QuadTreeTestData>
+  <InsertRemoveTests>
+    <InsertRemoveTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="36;3;0;0" value="4" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="4;44;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="49;49;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Remove value="2" type="System.Int32" instructionResult="true" />
+      </Instructions>
+      <ExpectedResult>5</ExpectedResult>
+    </InsertRemoveTest>
+    
+    <InsertRemoveTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="110;110;0;0" value="4" type="System.Int32" instructionResult="false" />
+        <Insert itemBoundary="4;44;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="49;49;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Remove value="2" type="System.Int32" instructionResult="true" />
+        <Remove value="10" type="System.Int32" instructionResult="false" />
+      </Instructions>
+      <ExpectedResult>4</ExpectedResult>
+    </InsertRemoveTest>
+  </InsertRemoveTests>
+
+  <MoveTests>
+    <MoveTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="30;3;0;0" value="4" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="4;40;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="40;40;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Remove value="2" type="System.Int32" instructionResult="true" />
+      </Instructions>
+      <ItemToMove itemBoundary="75;25;0;0" value="3" type="System.Int32" />
+      <QueryOldBoundary itemBoundary="0;0;50;50" />
+      <QueryNewBoundary itemBoundary="50;0;50;50" />
+      <ExpectedResult NewBefore="0" NewAfter="1" OldBefore="5" OldAfter="4" moveResult="true" />
+    </MoveTest>
+
+    <MoveTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="30;3;0;0" value="4" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="4;40;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="40;40;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Remove value="2" type="System.Int32" instructionResult="true" />
+      </Instructions>
+      <ItemToMove itemBoundary="115;25;0;0" value="3" type="System.Int32" />
+      <QueryOldBoundary itemBoundary="0;0;50;50" />
+      <QueryNewBoundary itemBoundary="100;0;100;100" />
+      <ExpectedResult NewBefore="0" NewAfter="0" OldBefore="5" OldAfter="5" moveResult="false" />
+    </MoveTest>
+  </MoveTests>
+
+  <ContainsTests>
+    <ContainsTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="110;110;0;0" value="4" type="System.Int32" instructionResult="false" />
+        <Insert itemBoundary="4;44;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="49;49;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Remove value="2" type="System.Int32" instructionResult="true" />
+        <Remove value="10" type="System.Int32" instructionResult="false" />
+      </Instructions>
+      <Contains value="1" type="System.Int32" />
+      <ExpectedResult value="true" />
+    </ContainsTest>
+    
+    <ContainsTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="110;110;0;0" value="4" type="System.Int32" instructionResult="false" />
+        <Insert itemBoundary="4;44;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="49;49;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Remove value="2" type="System.Int32" instructionResult="true" />
+        <Remove value="10" type="System.Int32" instructionResult="false" />
+      </Instructions>
+      <Contains value="42" type="System.Int32" />
+      <ExpectedResult value="false" />
+    </ContainsTest>
+
+    <ContainsTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="110;110;0;0" value="4" type="System.Int32" instructionResult="false" />
+        <Insert itemBoundary="4;44;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="49;49;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Remove value="2" type="System.Int32" instructionResult="true" />
+        <Remove value="10" type="System.Int32" instructionResult="false" />
+        <Move itemBoundary="150;150;0;0" value="3" type="System.Int32" instructionResult="false" />
+      </Instructions>
+      <Contains value="3" type="System.Int32" />
+      <ExpectedResult value="true" />
+    </ContainsTest>
+
+    <ContainsTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true"/>
+        <Insert itemBoundary="30;3;0;0" value="4" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="4;40;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Resize value="50;50;50;50" />
+      </Instructions>
+      <Contains value="6" type="System.Int32" />
+      <ExpectedResult value="true" />
+    </ContainsTest>
+    
+    <ContainsTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true"/>
+        <Insert itemBoundary="30;3;0;0" value="4" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="4;40;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Move itemBoundary="80;0;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Resize value="50;50;50;50" />
+      </Instructions>
+      <Contains value="8" type="System.Int32" />
+      <ExpectedResult value="false" />
+    </ContainsTest>
+  </ContainsTests>
+
+  <QueryTests>
+    <QueryTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="25;25;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="25;75;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;25;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="4" type="System.Int32" instructionResult="true" />
+      </Instructions>
+      <Query value="0;0;50;50" />
+      <ExpectedResult count="1">
+        <ResultContainsItem value="1" type="System.Int32" />
+      </ExpectedResult>
+    </QueryTest>
+    
+    <QueryTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="25;25;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="25;75;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;25;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="4" type="System.Int32" instructionResult="true" />
+      </Instructions>
+      <Query value="0;0;100;50" />
+      <ExpectedResult count="2">
+        <ResultContainsItem value="1" type="System.Int32" />
+        <ResultContainsItem value="3" type="System.Int32" />
+      </ExpectedResult>
+    </QueryTest>
+    
+    <QueryTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="25;25;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="25;75;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;25;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="4" type="System.Int32" instructionResult="true" />
+      </Instructions>
+      <Query value="0;0;50;100" />
+      <ExpectedResult count="2">
+        <ResultContainsItem value="1" type="System.Int32" />
+        <ResultContainsItem value="2" type="System.Int32" />
+      </ExpectedResult>
+    </QueryTest>
+    
+    <QueryTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="25;25;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="25;75;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;25;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="4" type="System.Int32" instructionResult="true" />
+      </Instructions>
+      <Query value="50;0;50;100" />
+      <ExpectedResult count="2">
+        <ResultContainsItem value="3" type="System.Int32" />
+        <ResultContainsItem value="4" type="System.Int32" />
+      </ExpectedResult>
+    </QueryTest>
+    
+    <QueryTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="25;25;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="25;75;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;25;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="4" type="System.Int32" instructionResult="true" />
+      </Instructions>
+      <Query value="0;0;100;100" />
+      <ExpectedResult count="4">
+        <ResultContainsItem value="1" type="System.Int32" />
+        <ResultContainsItem value="2" type="System.Int32" />
+        <ResultContainsItem value="3" type="System.Int32" />
+        <ResultContainsItem value="4" type="System.Int32" />
+      </ExpectedResult>
+    </QueryTest>
+  </QueryTests>
+
+  <ResizeTests>
+    <ResizeTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="30;3;0;0" value="4" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="4;40;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Resize value="0;0;50;50" />
+      </Instructions>
+      <ExpectedResult expecedInBounds="5" expecedOutOfBounds="1" expectedNewBoundary="0;0;50;50" />
+    </ResizeTest>
+
+    <ResizeTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="30;3;0;0" value="4" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="4;40;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Resize value="0;0;80;80" />
+      </Instructions>
+      <ExpectedResult expecedInBounds="6" expecedOutOfBounds="0" expectedNewBoundary="0;0;80;80" />
+    </ResizeTest>
+
+    <ResizeTest>
+      <QuadTreeBoundarySize value="0;0;100;100" />
+      <Instructions>
+        <Insert itemBoundary="0;0;0;0" value="1" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="1;1;0;0" value="2" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="2;2;0;0" value="3" type="System.Int32" instructionResult="true"/>
+        <Insert itemBoundary="30;3;0;0" value="4" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="4;40;0;0" value="5" type="System.Int32" instructionResult="true" />
+        <Insert itemBoundary="75;75;0;0" value="6" type="System.Int32" instructionResult="true" />
+        <Resize value="50;50;50;50" />
+      </Instructions>
+      <ExpectedResult expecedInBounds="1" expecedOutOfBounds="5" expectedNewBoundary="50;50;50;50" />
+    </ResizeTest>
+  </ResizeTests>
+</QuadTreeTestData>

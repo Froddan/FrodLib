@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FractionTestData>
+
+  <!-- Fraction Additions -->
+  <AdditionTests>
+    <AdditionTest>
+      <Fraction1>
+        <Numerator>2</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>4</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction2>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>22</Numerator>
+          <Denominator>15</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </AdditionTest>
+
+    <AdditionTest>
+      <Fraction1>
+        <Numerator>2</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction1>
+      <Value>1</Value>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>7</Numerator>
+          <Denominator>5</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </AdditionTest>
+
+    <AdditionTest>
+      <Fraction1>
+        <Numerator>2</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction1>
+      <Value>2</Value>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>12</Numerator>
+          <Denominator>5</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </AdditionTest>
+  </AdditionTests>
+
+  <!-- Fraction Subtractions -->
+  <SubtractionTests>
+    <SubtractionTest>
+      <Fraction1>
+        <Numerator>9</Numerator>
+        <Denominator>6</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>4</Numerator>
+        <Denominator>6</Denominator>
+      </Fraction2>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>5</Numerator>
+          <Denominator>6</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </SubtractionTest>
+
+    <SubtractionTest>
+      <Fraction1>
+        <Numerator>25</Numerator>
+        <Denominator>4</Denominator>
+      </Fraction1>
+      <Value>2</Value>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>17</Numerator>
+          <Denominator>4</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </SubtractionTest>
+  </SubtractionTests>
+
+  <!-- Fraction Multiplications -->
+  <MultiplicationTests>
+    <MultiplicationTest>
+      <Fraction1>
+        <Numerator>2</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>4</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction2>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>8</Numerator>
+          <Denominator>15</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </MultiplicationTest>
+
+    <MultiplicationTest>
+      <Fraction1>
+        <Numerator>2</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction1>
+      <Value>3</Value>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>2</Numerator>
+          <Denominator>1</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </MultiplicationTest>
+  </MultiplicationTests>
+
+  <!-- Fraction Division -->
+  <DivisionTests>
+
+    <DivisionTest>
+      <Fraction1>
+        <Numerator>2</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>4</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction2>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>10</Numerator>
+          <Denominator>12</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </DivisionTest>
+
+    <DivisionTest>
+      <Fraction1>
+        <Numerator>15</Numerator>
+        <Denominator>14</Denominator>
+      </Fraction1>
+      <Value>3</Value>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>210</Numerator>
+          <Denominator>588</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </DivisionTest>
+  </DivisionTests>
+
+  <!-- Fraction Reduction -->
+  <ReductionTests>
+    <ReductionTest>
+      <Fraction>
+        <Numerator>2</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>2</Numerator>
+          <Denominator>3</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </ReductionTest>
+
+    <ReductionTest>
+      <Fraction>
+        <Numerator>25</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>5</Numerator>
+          <Denominator>1</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </ReductionTest>
+
+    <ReductionTest>
+      <Fraction>
+        <Numerator>15</Numerator>
+        <Denominator>20</Denominator>
+      </Fraction>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>3</Numerator>
+          <Denominator>4</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </ReductionTest>
+  </ReductionTests>
+
+  <!-- Fraction To Denomitor -->
+  <ToDenomitorTests>
+    <ToDenomitorTest>
+      <Fraction>
+        <Numerator>15</Numerator>
+        <Denominator>20</Denominator>
+      </Fraction>
+      <ToDenomitor>40</ToDenomitor>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>30</Numerator>
+          <Denominator>40</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </ToDenomitorTest>
+
+    <ToDenomitorTest>
+      <Fraction>
+        <Numerator>4</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction>
+      <ToDenomitor>12</ToDenomitor>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>4</Numerator>
+          <Denominator>3</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </ToDenomitorTest>
+
+  </ToDenomitorTests>
+
+
+
+  <!-- Fraction Reciprocal -->
+  <ReciprocalTests>
+    <ReciprocalTest>
+      <Fraction>
+        <Numerator>15</Numerator>
+        <Denominator>20</Denominator>
+      </Fraction>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>20</Numerator>
+          <Denominator>15</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </ReciprocalTest>
+
+    <ReciprocalTest>
+      <Fraction>
+        <Numerator>4</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction>
+      <ExpectedResult>
+        <Fraction>
+          <Numerator>3</Numerator>
+          <Denominator>4</Denominator>
+        </Fraction>
+      </ExpectedResult>
+    </ReciprocalTest>
+    
+  </ReciprocalTests>
+
+  <!-- Fraction comparisons -->
+  <ComparisonTests>
+    
+    <!-- Equals -->
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>15</Numerator>
+        <Denominator>20</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>30</Numerator>
+        <Denominator>40</Denominator>
+      </Fraction2>
+      <Comparer>Equals</Comparer>
+      <ExpectedResult>true</ExpectedResult>
+    </ComparisonTest>
+
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>29</Numerator>
+        <Denominator>13</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>6</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction2>
+      <Comparer>Equals</Comparer>
+      <ExpectedResult>false</ExpectedResult>
+    </ComparisonTest>
+
+    <!-- Not Equals -->
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>4</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>3</Numerator>
+        <Denominator>4</Denominator>
+      </Fraction2>
+      <Comparer>NotEquals</Comparer>
+      <ExpectedResult>true</ExpectedResult>
+    </ComparisonTest>
+
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>5</Numerator>
+        <Denominator>8</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>10</Numerator>
+        <Denominator>16</Denominator>
+      </Fraction2>
+      <Comparer>NotEquals</Comparer>
+      <ExpectedResult>false</ExpectedResult>
+    </ComparisonTest>
+
+    <!-- Lesser Then -->
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>11</Numerator>
+        <Denominator>20</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>30</Numerator>
+        <Denominator>40</Denominator>
+      </Fraction2>
+      <Comparer>LesserThen</Comparer>
+      <ExpectedResult>true</ExpectedResult>
+    </ComparisonTest>
+
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>21</Numerator>
+        <Denominator>20</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>12</Numerator>
+        <Denominator>19</Denominator>
+      </Fraction2>
+      <Comparer>LesserThen</Comparer>
+      <ExpectedResult>false</ExpectedResult>
+    </ComparisonTest>
+
+    <!-- Greater Then -->
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>11</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>6</Numerator>
+        <Denominator>4</Denominator>
+      </Fraction2>
+      <Comparer>GreaterThen</Comparer>
+      <ExpectedResult>true</ExpectedResult>
+    </ComparisonTest>
+
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>13</Numerator>
+        <Denominator>26</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>2</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction2>
+      <Comparer>GreaterThen</Comparer>
+      <ExpectedResult>false</ExpectedResult>
+    </ComparisonTest>
+
+    <!-- Greater Then Or Equal -->
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>4</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>2</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction2>
+      <Comparer>GreaterThenOrEqual</Comparer>
+      <ExpectedResult>true</ExpectedResult>
+    </ComparisonTest>
+
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>15</Numerator>
+        <Denominator>20</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>30</Numerator>
+        <Denominator>40</Denominator>
+      </Fraction2>
+      <Comparer>GreaterThenOrEqual</Comparer>
+      <ExpectedResult>true</ExpectedResult>
+    </ComparisonTest>
+
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>7</Numerator>
+        <Denominator>9</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>9</Numerator>
+        <Denominator>8</Denominator>
+      </Fraction2>
+      <Comparer>GreaterThenOrEqual</Comparer>
+      <ExpectedResult>false</ExpectedResult>
+    </ComparisonTest>
+
+    <!-- Lesser Then Or Equal -->
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>1</Numerator>
+        <Denominator>10</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>42</Numerator>
+        <Denominator>30</Denominator>
+      </Fraction2>
+      <Comparer>LesserThenOrEqual</Comparer>
+      <ExpectedResult>true</ExpectedResult>
+    </ComparisonTest>
+
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>25</Numerator>
+        <Denominator>5</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>5</Numerator>
+        <Denominator>1</Denominator>
+      </Fraction2>
+      <Comparer>LesserThenOrEqual</Comparer>
+      <ExpectedResult>true</ExpectedResult>
+    </ComparisonTest>
+
+    <ComparisonTest>
+      <Fraction1>
+        <Numerator>4</Numerator>
+        <Denominator>3</Denominator>
+      </Fraction1>
+      <Fraction2>
+        <Numerator>3</Numerator>
+        <Denominator>4</Denominator>
+      </Fraction2>
+      <Comparer>LesserThenOrEqual</Comparer>
+      <ExpectedResult>false</ExpectedResult>
+    </ComparisonTest>
+
+  </ComparisonTests>
+</FractionTestData>

@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FrodLib.Attributes.DefaultFactoryAttribute" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Attributes\DefaultFactoryAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Attributes.SingletonAttribute" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Attributes\SingletonAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Collections.SkipList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGIAEAAABAACBBAACAAABIQAAAAAAAAACACFAABVIEk=</HashCode>
+      <FileName>Collections\SkipList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Collections.SkipListNode&lt;T&gt;" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAABAAACAAACAAAgAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\SkipListNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Collections.SkipListNodeList&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\SkipListNodeList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.BinaryTrees.AbstractBinaryTree&lt;T&gt;" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEEgAAAEAALAAAAAgBARAIAAIAAAEQAEBACBQIAA=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\AbstractBinaryTree.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.BinaryTrees.AVLTree&lt;T&gt;" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAEAAAAgAAAAAAgEABAAAACAAAAIAAAAEAABAIAw=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\AVLTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.BinaryTrees.AVLTreeNode&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAQAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\AVLTreeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.BinaryTrees.BinaryTree&lt;T&gt;" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAEAAAAAAAAGAAAEABAQAAAAAAAAAAAAEAABQAAA=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\BinaryTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.BinaryTrees.BinaryTreeNode&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAgAACAFAAAAQAAAAAAAAAAAAAAAgABAAAA=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\BinaryTreeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.BinaryTrees.Enumerators.BinaryTreeInOrderEnumerator&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACAABAAAggCAAAAAgAAAAAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\Enumerators\BinaryTreeInOrderEnumerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.BinaryTrees.Enumerators.BinaryTreePostOrderEnumerator&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACAABAAAggCAAAAAgAAAAAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\Enumerators\BinaryTreePostOrderEnumerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.BinaryTrees.Enumerators.BinaryTreePreOrderEnumerator&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACAABAAAggCAAAAAgAAAAAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\Enumerators\BinaryTreePreOrderEnumerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Collections.Trees.QuadTrees.QuadTree&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BFAAEEAgAgAQIRAAAAAABAVBIEAAAQgEAAABAABQNAA=</HashCode>
+      <FileName>Collections\Trees\QuadTrees\QuadTree.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Commands.DelegateCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAEAAAAABAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Commands\DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Comminications.TCPConnection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEEABAQAECEAAAAAEG0IAAAAAAAIAQARCAEBBSCAAIQ=</HashCode>
+      <FileName>Comminications\TCPConnection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Comminications.TCPServer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgAAAAEAIAAAAwAAAAQAAAYIIAAAgAAAABAAAAAgA=</HashCode>
+      <FileName>Comminications\TCPServer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Common.Node&lt;T&gt;" Collapsed="true">
+    <Position X="1.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAwAABABAA=</HashCode>
+      <FileName>Common\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Common.NodeList&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\NodeList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Configurations.FactoriesConfigsSection" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Configurations\FactoriesConfigsSection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Configurations.FactoryCollection" Collapsed="true">
+    <Position X="16.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\FactoryCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Configurations.FactoryConfigElement" Collapsed="true">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIBAAQAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\FactoryConfigElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.AssemblyExtension" Collapsed="true">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\AssemblyExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.BitmapExtensions" Collapsed="true">
+    <Position X="13" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Extensions\BitmapExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.CollectionExtensions" Collapsed="true">
+    <Position X="14.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAABAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Extensions\CollectionExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.DateExtensions" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAQAAAAAAGAACACAAAQAABAAAAEAA=</HashCode>
+      <FileName>Extensions\DateExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.DispatcherExtensions" Collapsed="true">
+    <Position X="11.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Extensions\DispatcherExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.IntervalExtenstion" Collapsed="true">
+    <Position X="11.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Extensions\IntervalExtenstion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.NumberExtensions" Collapsed="true">
+    <Position X="16.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAIAAAAAAAAAAECAAAAAAAAAAAAAABAAAAAAAgA=</HashCode>
+      <FileName>Extensions\NumberExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.ObjectExtension" Collapsed="true">
+    <Position X="6" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAA=</HashCode>
+      <FileName>Extensions\ObjectExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.ReflectionExtensions" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\ReflectionExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.SortExtension" Collapsed="true">
+    <Position X="13" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Extensions\SortExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.StringExtensions" Collapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\StringExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Extensions.TaskExtensions" Collapsed="true">
+    <Position X="16.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAQAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Extensions\TaskExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Factories.FactoryBuilder" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAQAAAAAAAAAAAAAAAAAAAAAACABkAAAAAAAAAA=</HashCode>
+      <FileName>Factories\FactoryBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Factories.FactoryNotFoundException" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\FactoryNotFoundException.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Terrain.HeightMap" Collapsed="true">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAFGAAAEAAAAIAGAAAAABAAAAAAQAA=</HashCode>
+      <FileName>Terrain\HeightMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Terrain.PerlinGenerator" Collapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>aAAAAAAACAABAAAAAAAAAAAAAAAACAAAgAEAAAAAAAE=</HashCode>
+      <FileName>Terrain\PerlinGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Utils.Copy" Collapsed="true">
+    <Position X="16.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Utils\Copy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Utils.MapiMailMessage" Collapsed="true">
+    <Position X="13" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAABAAAAABAIABAAEAAGAAACABAAAAAAAAUIA=</HashCode>
+      <FileName>Utils\Mapi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Utils.Recipient" Collapsed="true">
+    <Position X="14.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAgAAAAAAACACAAAAAAAAA=</HashCode>
+      <FileName>Utils\Mapi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Utils.RecipientCollection" Collapsed="true">
+    <Position X="16.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAACAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Utils\Mapi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Utils.NotificationSuspender" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\NotificationSuspender.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Utils.OverrideCursor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\OverrideCursor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.Utils.PropertyNameHelper" Collapsed="true">
+    <Position X="11.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\PropertyNameHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Utils.Singleton&lt;T&gt;" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Singleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrodLib.Utils.WorkerQueue" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQIACAAAAAAgQBAQAAQAAAAUAAABAABAQIAAAA=</HashCode>
+      <FileName>Utils\WorkerQueue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FrodLib.ViewModels.ViewModelBase" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Struct Name="FrodLib.Collections.Trees.QuadTrees.QuadTreeNode&lt;T&gt;" Collapsed="true">
+    <Position X="7.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEEAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Collections\Trees\QuadTrees\QuadTreeNode.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="FrodLib.Common.Fraction" Collapsed="true">
+    <Position X="6" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgCAAAE4AWABgAAAUAAAIABoBAAAAgQByA=</HashCode>
+      <FileName>Common\Fraction.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="FrodLib.Collections.Trees.BinaryTrees.IBinaryTree&lt;T&gt;" Collapsed="true">
+    <Position X="6" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\Trees\BinaryTrees\IBinaryTree.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FrodLib.Collections.Trees.QuadTrees.IQuadTree&lt;T&gt;" Collapsed="true">
+    <Position X="9.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAABBAEAAAAgAAAAAAAAABAA=</HashCode>
+      <FileName>Collections\Trees\QuadTrees\IQuadTree.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FrodLib.Utils.INotificationSuspendable" Collapsed="true">
+    <Position X="7.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\INotificationSuspendable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FrodLib.Utils.IWorkerQueue" Collapsed="true">
+    <Position X="11.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACAAAAAAgAAAQAAAAAAAEAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Utils\IWorkerQueue.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="FrodLib.Attributes.SingletonInstanceAccessType" Collapsed="true">
+    <Position X="6" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Attributes\SingletonAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

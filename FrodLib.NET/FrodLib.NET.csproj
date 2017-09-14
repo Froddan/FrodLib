@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0D8D3102-29B3-4301-9B99-9D6C428BBCC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FrodLib</RootNamespace>
+    <AssemblyName>FrodLib.NET</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
+    <AssemblyInfoFilePath>Properties\AssemblyInfo.cs</AssemblyInfoFilePath>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>None.IncrementOnDemandWithReset.None.Increment</AssemblyVersionSettings>
+    <AssemblyVersion>1.3.7.79</AssemblyVersion>
+    <AssemblyInfoVersionSettings>None.IncrementOnDemandWithReset.None.Increment</AssemblyInfoVersionSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">Net20</CustomConstants>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">Net40</CustomConstants>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">Net45</CustomConstants>
+    <DefineConstants Condition=" '$(DefineConstants)' != '' And '$(CustomConstants)' != '' ">$(DefineConstants);</DefineConstants>
+    <DefineConstants>$(DefineConstants)$(CustomConstants)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">Net20</CustomConstants>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">Net40</CustomConstants>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">Net45</CustomConstants>
+    <DefineConstants Condition=" '$(DefineConstants)' != '' And '$(CustomConstants)' != '' ">$(DefineConstants);</DefineConstants>
+    <DefineConstants>$(DefineConstants)$(CustomConstants)</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\DefaultFactoryAttribute.cs" />
+    <Compile Include="Attributes\SingletonAttribute.cs" />
+    <Compile Include="Commands\AsyncRelayCommandWPF.cs" />
+    <Compile Include="Commands\CommandHelper.cs" />
+    <Compile Include="Commands\RelayCommandWPF.cs" />
+    <Compile Include="Common\WpfContext.cs" />
+    <Compile Include="Communications\TCPServer.cs" />
+    <Compile Include="Communications\TCPConnection.cs" />
+    <Compile Include="Common\PointTypeConverter.cs" />
+    <Compile Include="Common\RectTypeConverter.cs" />
+    <Compile Include="Configurations\FactoryCollection.cs" />
+    <Compile Include="Configurations\FactoryConfigElement.cs" />
+    <Compile Include="Configurations\FactoriesConfigsSection.cs" />
+    <Compile Include="CQI\NamedPipedCommandManagerClient.cs" />
+    <Compile Include="CQI\NamedPipedCommandManangerServer.cs" />
+    <Compile Include="CQI\PipeStreamString.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\IoCScannerExtensions.cs" />
+    <Compile Include="Interfaces\IWorkerItem.cs" />
+    <Compile Include="Utils\FileUtilities.cs" />
+    <Compile Include="Utils\ImageHelper.cs" />
+    <Compile Include="Utils\Isolated.cs" />
+    <Compile Include="Utils\DynamicAssemblyExecuter.cs" />
+    <Compile Include="Utils\StructUtils.cs" />
+    <Compile Include="Factories\FactoryBuilder.cs" />
+    <Compile Include="Factories\FactoryNotFoundException.cs" />
+    <Compile Include="Utils\COMDisposer.cs" />
+    <Compile Include="Interfaces\IWorkerQueue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\HeightMap.cs" />
+    <Compile Include="Utils\PerlinGenerator.cs" />
+    <Compile Include="Extensions\DispatcherExtensions.cs" />
+    <Compile Include="Utils\Mapi.cs" />
+    <Compile Include="Utils\OverrideCursor.cs" />
+    <Compile Include="Utils\WorkerQueue.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="FrodLib.NET.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FrodLib.Core\FrodLib.Core.csproj">
+      <Project>{93abadc8-b5cb-485c-9896-dd286484b124}</Project>
+      <Name>FrodLib.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

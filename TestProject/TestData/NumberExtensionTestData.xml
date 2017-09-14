@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<NumberExtensionTestData>
+  <IsNumberTests>
+    <IsNumberTest>
+      <Object type="System.Int32" complexType="false" value="1" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.UInt32" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.Int64" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.UInt64" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.Int16" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.UInt16" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.Single" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.Double" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.Decimal" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.Byte" complexType="false" value="2" />
+      <Result value="true" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="System.String" complexType="false" value="Not a number" />
+      <Result value="false" />
+    </IsNumberTest>
+    <IsNumberTest>
+      <Object type="TestProject.TestDataClasses.Address" complexType="true" >
+        <ComplexType type="TestProject.TestDataClasses.Address">
+          <ConstructorInitializer>
+            <ConstructorValue value="12345" type="System.Int32" />
+            <ConstructorValue value="Gata 1" type="System.String" />
+            <ConstructorValue value="Stad 1" type="System.String" />
+          </ConstructorInitializer>
+          <Properties>
+          </Properties>
+        </ComplexType>
+      </Object>
+      <Result value="false" />
+    </IsNumberTest>
+  </IsNumberTests>
+
+  <ToNumericThrowTests>
+    <ToNumericThrowTest>
+      <StringValue value="2123.4" />
+      <Result value="2123.4" shouldThrowException="false" />
+    </ToNumericThrowTest>
+    <ToNumericThrowTest>
+      <StringValue value="2,123.4" />
+      <Result value="2123.4" shouldThrowException="false" />
+    </ToNumericThrowTest>
+    <ToNumericThrowTest>
+      <StringValue value="2.123,4" />
+      <Result value="2123.4" shouldThrowException="false" />
+    </ToNumericThrowTest>
+    <ToNumericThrowTest>
+      <StringValue value="2 123,4" />
+      <Result value="2123.4" shouldThrowException="false" />
+    </ToNumericThrowTest>
+    <ToNumericThrowTest>
+      <StringValue value="Not a numeric" />
+      <Result value="0.0" shouldThrowException="True" />
+    </ToNumericThrowTest>
+  </ToNumericThrowTests>
+
+
+  <TryToNumericTests>
+    <TryToNumericTest>
+      <StringValue value="2123.4" />
+      <Result value="2123.4" shouldReturnValue="true" />
+    </TryToNumericTest>
+    <TryToNumericTest>
+      <StringValue value="2,123.4" />
+      <Result value="2123.4" shouldReturnValue="true" />
+    </TryToNumericTest>
+    <TryToNumericTest>
+      <StringValue value="2.123,4" />
+      <Result value="2123.4" shouldReturnValue="true" />
+    </TryToNumericTest>
+    <TryToNumericTest>
+      <StringValue value="2 123,4" />
+      <Result value="2123.4" shouldReturnValue="true" />
+    </TryToNumericTest>
+    <TryToNumericTest>
+      <StringValue value="Not a numeric" />
+      <Result value="0.0" shouldReturnValue="false" />
+    </TryToNumericTest>
+  </TryToNumericTests>
+
+</NumberExtensionTestData>

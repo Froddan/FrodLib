@@ -13,3 +13,7 @@ FrodLib.NET/bin/
 FrodLib.NET/obj/
 TestProject/bin/
 TestProject/obj/
+Create FrodLib.Controls.WPF Nuget.bat
+Create FrodLib.core Nuget.bat
+Create FrodLib.NET Nuget.bat
+Create RTLogViewer Nuget.bat

@@ -7,3 +7,9 @@ RTLogViewer/
 WPFControllerTest/
 FrodUtils.sln
 packages
+FrodLib.Core/bin/
+FrodLib.Core/obj/
+FrodLib.NET/bin/
+FrodLib.NET/obj/
+TestProject/bin/
+TestProject/obj/

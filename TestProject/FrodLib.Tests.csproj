@@ -127,7 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FrodLib.Core\FrodLib.Core.csproj">
-      <Project>{93abadc8-b5cb-485c-9896-dd286484b124}</Project>
+      <Project>{1392a4cb-fcfe-403c-9862-ba55dedeaeec}</Project>
       <Name>FrodLib.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\FrodLib.NET\FrodLib.NET.csproj">

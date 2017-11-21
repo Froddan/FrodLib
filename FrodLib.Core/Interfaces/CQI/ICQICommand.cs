@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FrodLib.CQI
 {
-    internal interface ICQICommand
+    public interface ICQICommand
     {
         void ExecuteCommand(ICommandManagerOutput commandPrompt, string[] args);
     }

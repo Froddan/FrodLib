@@ -113,6 +113,13 @@ namespace FrodLib.IoC
             return new IoCContainerMapResult(this, contract, implItem, typesMappedToContract);
         }
 
+        internal IIoCContainerMapResult RegisterDecorator(Type decoratorContract, Type decoratorImplementation, object[] args)
+        {
+            throw new NotImplementedException();
+
+            ValidateContractImplementationMatch(decoratorContract, decoratorImplementation);
+        }
+
         private IList<Type> AddContainerItemToMap(Type contract, IFrodIoCContainerItem implItem)
         {
             IList<Type> typesMappedToContract = null;
@@ -249,16 +256,13 @@ namespace FrodLib.IoC
 
             if (initialContract == null) initialContract = contract;
 
-            object resolvedInstance;
-            if (useResolvedObjects && resolvedObjects.TryGetValue(initialContract, out resolvedInstance))
+            object obj = null;
+            if (useResolvedObjects && resolvedObjects.TryGetValue(initialContract, out obj))
             {
-                return resolvedInstance;
             }
             else if (isFirstCallForContract && _map.TryGetValue(contract, out implementations) && implementations.Any())
             {
-                var obj = implementations[0].CreateInstance(contract, argResolver, resolvedObjects, true);
-                // ResolveObjectsByMethodInjection(obj, argResolver);
-                return obj;
+                obj = implementations[0].CreateInstance(contract, argResolver, resolvedObjects, true);
             }
             else if (contractTypeInfo.IsInterface || contractTypeInfo.IsAbstract)
             {
@@ -282,12 +286,13 @@ namespace FrodLib.IoC
 
                 var constParams = selectedConstructor.GetParameters();
                 var args = GetArguments(contract, constParams, argResolver, resolveInjectByMethod, resolvedObjects);
-                var obj = selectedConstructor.Invoke(args);
+                obj = selectedConstructor.Invoke(args);
 
                 resolvedObjects[initialContract] = obj;
 
-                return obj;
             }
+
+            return obj;
         }
 
         private class GenericItemCreator<T>

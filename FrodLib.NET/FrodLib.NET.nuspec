@@ -4,11 +4,17 @@
     <id>$id$</id>
     <version>$version$</version>
     <title>$title$</title>
-    <authors>Froddan</authors>
-    <owners>Froddan</owners>
+    <authors>Fredrik Schmidt</authors>
+    <owners>Fredrik Schmidt</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <copyright>Copyright 2016</copyright>
+    <copyright>Copyright 2017</copyright>
+    <projectUrl>https://github.com/Froddan/FrodLib</projectUrl>
     <tags>FrodUtils FrodLib</tags>
+
+    <!-- Dependencies are automatically installed when the package is installed -->
+    <dependencies>
+      <dependency id="FrodLib.Core" version="1.4.4" />
+    </dependencies>
   </metadata>
 </package>

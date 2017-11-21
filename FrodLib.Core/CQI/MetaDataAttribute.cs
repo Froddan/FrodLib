@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FrodLib.CQI
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    class MetadataAttribute : Attribute
+    public class MetadataAttribute : Attribute
     {
         public MetadataAttribute(string name, object value)
         {

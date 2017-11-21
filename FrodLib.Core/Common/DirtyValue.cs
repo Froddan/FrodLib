@@ -5,11 +5,23 @@ using System.Text;
 
 namespace FrodLib
 {
+    public interface IDirtyValue
+    {
+        bool IsDirty { get; }
+        void Commit();
+        void Rollback();
+    }
+
+    public interface IDirtyValue<T> : IDirtyValue
+    {
+        T Value { get; }
+    }
+
     /// <summary>
     /// A value holder that holds an orginal value and marks the value as "dirty" if it has changed
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public struct DirtyValue<T> : IEquatable<T>, IEquatable<DirtyValue<T>>
+    public struct DirtyValue<T> : IEquatable<T>, IEquatable<DirtyValue<T>>, IDirtyValue<T>
     {
         private T _orginalValue;
         private T _currentValue;

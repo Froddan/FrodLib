@@ -177,7 +177,7 @@ namespace FrodLib.Utils
             return SetValue(ref valueHolder, value, propName);
         }
 
-        protected bool SetValue<T>(ref T valueHolder, T value, [CallerMemberName] string propertyName = null)
+        protected virtual bool SetValue<T>(ref T valueHolder, T value, [CallerMemberName] string propertyName = null)
         {
 
 
@@ -204,7 +204,7 @@ namespace FrodLib.Utils
             return true;
         }
 
-        protected bool SetValue<T>(ref DirtyValue<T> valueHolder, T value, [CallerMemberName] string propertyName = null)
+        protected virtual bool SetValue<T>(ref DirtyValue<T> valueHolder, T value, [CallerMemberName] string propertyName = null)
         {
 
             if (EnterPropertyNameUpdateLock(propertyName))

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FrodLib.CQI
 {
-    class CommandRegistry : IIntenalIoCRegistry
+    public sealed class CommandRegistry : IIntenalIoCRegistry
     {
        
         public static CommandRegistry Instance

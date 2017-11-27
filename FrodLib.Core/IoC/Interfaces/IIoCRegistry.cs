@@ -18,7 +18,7 @@ namespace FrodLib.IoC
     internal interface IDefaultIoCContainer : IIoCRegistry
     {
        
-        object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, bool resolveMethodInject, IDictionary<Type, object> resovedObjects);
+        object CreateInstance(Type contract, IIoCArgumentResolver argResolver, bool resolveMethodInject, IDictionary<Type, object> resovedObjects);
 
         IIoCContainerMapResult Register(Type contract, Type implementation, object[] args);
     }

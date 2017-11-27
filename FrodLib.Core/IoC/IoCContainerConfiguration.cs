@@ -148,7 +148,7 @@ namespace FrodLib.IoC
             return m_defaultRegistry.RemoveSingleInstance(contractType);
         }
 
-        internal object GetInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, bool resolveByMethodInject, IDictionary<Type, object> resolvedObjects)
+        internal object GetInstance(Type contract, IIoCArgumentResolver argResolver, bool resolveByMethodInject, IDictionary<Type, object> resolvedObjects)
         {
             var registries = m_customRegistryes;
             foreach (IIoCRegistry registry in registries)
@@ -166,7 +166,7 @@ namespace FrodLib.IoC
         }
 
 
-        internal IEnumerable GetManyInstances(Type contract, ResolveConstructorArgumentDelegate argResolver)
+        internal IEnumerable GetManyInstances(Type contract, IIoCArgumentResolver argResolver)
         {
             var registries = m_customRegistryes;
             foreach (IIoCRegistry registry in registries)

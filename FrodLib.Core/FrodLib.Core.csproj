@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.1;net45</TargetFrameworks>
     <RootNamespace>FrodLib</RootNamespace>
-    <AssemblyVersion>1.4.4.0</AssemblyVersion>
-    <FileVersion>1.4.4.0</FileVersion>
+    <AssemblyVersion>1.4.5.0</AssemblyVersion>
+    <FileVersion>1.4.5.0</FileVersion>
     <RepositoryType>GitHub</RepositoryType>
     <Description>A class library that contains useful utilities and extensions for multiple platform (standard library)</Description>
     <Company>Fredrik Schmidt</Company>
     <Product>FrodLib</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.4.4</Version>
+    <Version>1.4.5</Version>
     <Copyright>Copyright © Fredrik Schmidt 2017</Copyright>
     <PackageReleaseNotes>Retargeted for NET.Standard 1.1</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/Froddan/FrodLib</RepositoryUrl>

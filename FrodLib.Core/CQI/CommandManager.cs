@@ -51,9 +51,12 @@ namespace FrodLib.CQI
         {
             foreach (var command in m_promptCommands.OrderBy(p => p.Metadata.Command))
             {
-                if (!CommandHistoryEnabled && (command.Value is HistoryCommand || command.Value is ClearHistoryCommand))
+                if ((command.Value is HistoryCommand || command.Value is ClearHistoryCommand))
                 {
-                    continue;
+                    if (!CommandHistoryEnabled)
+                    {
+                        continue;
+                    }
                 }
                 m_commandManagerOutput.WriteLine(command.Metadata.Command + " - " + command.Metadata.Description);
             }
@@ -61,6 +64,7 @@ namespace FrodLib.CQI
 
         void ICommandManager.PrintCommandHistory()
         {
+            if (!CommandHistoryEnabled) return;
             var commandHistory = s_commandHistory;
             if (commandHistory != null)
             {
@@ -73,6 +77,7 @@ namespace FrodLib.CQI
 
         void ICommandManager.ClearCommandHistory()
         {
+            if (!CommandHistoryEnabled) return;
             var commandHistory = s_commandHistory;
             if (commandHistory != null) commandHistory.Clear();
         }

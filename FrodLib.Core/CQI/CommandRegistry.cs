@@ -11,7 +11,7 @@ namespace FrodLib.CQI
 {
     public sealed class CommandRegistry : IIntenalIoCRegistry
     {
-       
+
         public static CommandRegistry Instance
         {
             get
@@ -23,6 +23,11 @@ namespace FrodLib.CQI
         object IIoCRegistry.CreateInstance(Type contract)
         {
             throw new NotImplementedException();
+        }
+
+        public CommandRegistry()
+        {
+            m_catalogs.Add(this.GetType().GetTypeInfo().Assembly);
         }
 
         //TContract IIoCRegistry.CreateInstance<TContract>()
@@ -57,7 +62,7 @@ namespace FrodLib.CQI
                             var metadataAttributes = typeInfo.GetCustomAttributes<MetadataAttribute>();
                             foreach (var attr in metadataAttributes)
                             {
-                                if(attr.Name.Equals(nameof(PromptCommandMetadata.Command), StringComparison.CurrentCultureIgnoreCase) && attr.Value != null)
+                                if (attr.Name.Equals(nameof(PromptCommandMetadata.Command), StringComparison.CurrentCultureIgnoreCase) && attr.Value != null)
                                 {
                                     commandMetaData.Command = attr.Value.ToString();
                                 }
@@ -76,12 +81,12 @@ namespace FrodLib.CQI
 
         public void Dispose()
         {
-            
+
         }
 
         bool IIoCRegistry.HasImplementationForType(Type contract)
         {
-            
+
             if (contract == typeof(ICQICommand))
             {
                 return true;
@@ -100,13 +105,14 @@ namespace FrodLib.CQI
             }
         }
 
-        private List<Assembly> m_catalogs = new List<Assembly>();
+        private readonly List<Assembly> m_catalogs = new List<Assembly>();
 
         internal event EventHandler CommandCatalogsChanged;
 
         public void RegisterCommandContainer(Assembly asm)
         {
             //AssemblyCatalog assemblyCatalog = new AssemblyCatalog(asm);
+            if (m_catalogs.Contains(asm)) return;
             m_catalogs.Add(asm);
             RaiseCommandCatalogsChanged();
         }
@@ -118,8 +124,10 @@ namespace FrodLib.CQI
         //    RaiseCommandCatalogsChanged();
         //}
 
-        public  void UnregisterCommandContainer(Assembly asm)
+        public void UnregisterCommandContainer(Assembly asm)
         {
+            if (asm == null) return;
+            if (asm.Equals(this.GetType().GetTypeInfo().Assembly)) return;
             bool catalogRemoved = false;
             for (int i = 0; i < m_catalogs.Count; i++)
             {
@@ -168,7 +176,7 @@ namespace FrodLib.CQI
             }
         }
 
-       
+
 
         private class PromptCommandMetadata : ICQICommandData
         {
@@ -177,7 +185,8 @@ namespace FrodLib.CQI
 
             public string Command
             {
-                get { return m_command ?? string.Empty; } set { m_command = value; }
+                get { return m_command ?? string.Empty; }
+                set { m_command = value; }
             }
 
             public string Description
@@ -189,8 +198,9 @@ namespace FrodLib.CQI
 
         private class CQILazy : IoCLazy<ICQICommand, ICQICommandData>
         {
-          
-            public CQILazy(Type implementation, ICQICommandData metadata ) :base(metadata, () => {
+
+            public CQILazy(Type implementation, ICQICommandData metadata) : base(metadata, () =>
+            {
                 return (ICQICommand)Activator.CreateInstance(implementation);
             })
             {

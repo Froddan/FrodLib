@@ -36,7 +36,7 @@ namespace FrodLib.IoC
             return _GetInstance(typeof(TInterface), null, true, null, true, new Dictionary<Type, object>(), true) as TInterface;
         }
 
-        public object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, bool resolveMyMethodInject, IDictionary<Type, object> resolvedObjects)
+        public object CreateInstance(Type contract, IIoCArgumentResolver argResolver, bool resolveMyMethodInject, IDictionary<Type, object> resolvedObjects)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
             resolvedObjects = resolvedObjects ?? new Dictionary<Type, object>();
@@ -176,7 +176,7 @@ namespace FrodLib.IoC
             }
         }
 
-        internal IEnumerable<object> CreateManyInstance(Type contract, ResolveConstructorArgumentDelegate argResolver)
+        internal IEnumerable<object> CreateManyInstance(Type contract, IIoCArgumentResolver argResolver)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
             var resolvedObjects = new Dictionary<Type, object>();
@@ -247,7 +247,7 @@ namespace FrodLib.IoC
             return removed;
         }
 
-        internal object _GetInstance(Type contract, Type initialContract, bool isFirstCallForContract, ResolveConstructorArgumentDelegate argResolver, bool resolveInjectByMethod, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
+        internal object _GetInstance(Type contract, Type initialContract, bool isFirstCallForContract, IIoCArgumentResolver argResolver, bool resolveInjectByMethod, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
 
@@ -299,11 +299,11 @@ namespace FrodLib.IoC
         {
             private IFrodIoCContainerItem containerItem;
             private Type contract;
-            private ResolveConstructorArgumentDelegate argResolver;
+            private IIoCArgumentResolver argResolver;
             private IDictionary<Type, object> resolvedObjects;
 
 
-            public GenericItemCreator(IFrodIoCContainerItem containerItem, Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects)
+            public GenericItemCreator(IFrodIoCContainerItem containerItem, Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
             {
                 this.containerItem = containerItem;
                 this.contract = contract;
@@ -318,7 +318,7 @@ namespace FrodLib.IoC
             }
         }
 
-        internal IEnumerable<object> _GetManyInstances(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects)
+        internal IEnumerable<object> _GetManyInstances(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
 
@@ -353,7 +353,7 @@ namespace FrodLib.IoC
             }
         }
 
-        private Delegate CreatelazyFactoryDelegate(Type contract, IFrodIoCContainerItem implementation, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects)
+        private Delegate CreatelazyFactoryDelegate(Type contract, IFrodIoCContainerItem implementation, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
         {
             var creatorType = typeof(GenericItemCreator<>);
 
@@ -368,7 +368,7 @@ namespace FrodLib.IoC
             return lambda;
         }
 
-        private void ResolveObjectsByMethodInjection(object obj, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects)
+        private void ResolveObjectsByMethodInjection(object obj, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
         {
             var objTypeInfo = obj.GetType().GetTypeInfo();
             var methods = objTypeInfo.DeclaredMethods;
@@ -384,7 +384,7 @@ namespace FrodLib.IoC
             }
         }
 
-        private object[] GetArguments(Type contract, ParameterInfo[] parameters, ResolveConstructorArgumentDelegate argResolver, bool resolveInjectByMethod, IDictionary<Type, object> resolvedObjects)
+        private object[] GetArguments(Type contract, ParameterInfo[] parameters, IIoCArgumentResolver argResolver, bool resolveInjectByMethod, IDictionary<Type, object> resolvedObjects)
         {
             object[] args = new object[parameters.Length];
             for (int i = 0; i < parameters.Length; i++)
@@ -401,7 +401,7 @@ namespace FrodLib.IoC
                 {
                     args[i] = argValue;
                 }
-                else if (argResolver != null && argResolver(i, parameters[i].Name, paramsType, out argValue))
+                else if (argResolver != null && argResolver.Resolve(i, parameters[i].Name, paramsType, out argValue))
                 {
                     args[i] = argValue;
                 }

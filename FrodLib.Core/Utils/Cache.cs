@@ -251,6 +251,11 @@ namespace FrodLib.Utils
             finally { locker.ExitReadLock(); }
         }
         #endregion
+
+        public string[] GetKeys()
+        {
+            return cache.Keys.OfType<string>().ToArray();
+        }
     }
 
     #region Cache class (non-generic)

@@ -10,11 +10,11 @@
     <description>$description$</description>
     <copyright>Copyright 2017</copyright>
     <projectUrl>https://github.com/Froddan/FrodLib</projectUrl>
-    <tags>FrodUtils FrodLib</tags>
+    <tags>FrodLib</tags>
 
     <!-- Dependencies are automatically installed when the package is installed -->
     <dependencies>
-      <dependency id="FrodLib.Core" version="1.4.4" />
+      <dependency id="FrodLib.Core" version="1.4.5.0" />
     </dependencies>
   </metadata>
 </package>

@@ -78,30 +78,40 @@ namespace FrodLib.IoC
         /// <returns></returns>
         public object GetInstance(Type contract)
         {
-            return GetInstance(contract, null, null);
+            return GetInstance(contract, null, (IIoCArgumentResolver)null);
         }
 
         public object GetInstance(Type contract, string key)
         {
-            return GetInstance(contract, key, null);
+            return GetInstance(contract, key,(IIoCArgumentResolver) null);
         }
 
         public object GetInstance(Type contract, ResolveConstructorArgumentDelegate argResolver)
         {
+            return GetInstance(contract, null, new IoCArgumentResolverDelegateWrapper(argResolver));
+        }
+
+        public object GetInstance(Type contract, IIoCArgumentResolver argResolver)
+        {
             return GetInstance(contract, null, argResolver);
         }
 
-        internal object GetInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, bool resolveByMethodInject, IDictionary<Type, object> resolvedObjects)
+        internal object GetInstance(Type contract, IIoCArgumentResolver argResolver, bool resolveByMethodInject, IDictionary<Type, object> resolvedObjects)
         {
             return _GetInstance(contract, null, argResolver, resolveByMethodInject, resolvedObjects);
         }
 
         public object GetInstance(Type contract, string key, ResolveConstructorArgumentDelegate argResolver)
         {
+            return _GetInstance(contract, key, new IoCArgumentResolverDelegateWrapper(argResolver), true, new Dictionary<Type, object>());
+        }
+
+        public object GetInstance(Type contract, string key, IIoCArgumentResolver argResolver)
+        {
             return _GetInstance(contract, key, argResolver, true, new Dictionary<Type, object>());
         }
 
-        private object _GetInstance(Type contract, string key, ResolveConstructorArgumentDelegate argResolver, bool resolveByMethodInject, IDictionary<Type, object> resolvedObjects)
+        private object _GetInstance(Type contract, string key, IIoCArgumentResolver argResolver, bool resolveByMethodInject, IDictionary<Type, object> resolvedObjects)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
 
@@ -178,7 +188,7 @@ namespace FrodLib.IoC
         public T GetInstance<T>() where T : class
         {
             Type type = typeof(T);
-            return GetInstance(type, null, null) as T;
+            return GetInstance(type, null,(IIoCArgumentResolver) null) as T;
         }
 
         public T GetInstance<T>(ResolveConstructorArgumentDelegate argResolver) where T : class
@@ -187,13 +197,25 @@ namespace FrodLib.IoC
             return GetInstance(type, null, argResolver) as T;
         }
 
+        public T GetInstance<T>(IIoCArgumentResolver argResolver) where T : class
+        {
+            Type type = typeof(T);
+            return GetInstance(type, null, argResolver) as T;
+        }
+
         public T GetInstance<T>(string key) where T : class
         {
             Type type = typeof(T);
-            return GetInstance(type, key, null) as T;
+            return GetInstance(type, key,(IIoCArgumentResolver) null) as T;
         }
 
         public T GetInstance<T>(string key, ResolveConstructorArgumentDelegate argResolver) where T : class
+        {
+            Type type = typeof(T);
+            return GetInstance(type, key, argResolver) as T;
+        }
+
+        public T GetInstance<T>(string key, IIoCArgumentResolver argResolver) where T : class
         {
             Type type = typeof(T);
             return GetInstance(type, key, argResolver) as T;
@@ -208,20 +230,30 @@ namespace FrodLib.IoC
         /// <returns>True if instance was found</returns>
         public bool TryGetInstance(Type contract, out object instance)
         {
-            return TryGetInstance(contract, null, null, out instance);
+            return TryGetInstance(contract, null, (IIoCArgumentResolver)null, out instance);
         }
 
         public bool TryGetInstance(Type contract, string key, out object instance)
         {
-            return TryGetInstance(contract, key, null, out instance);
+            return TryGetInstance(contract, key, (IIoCArgumentResolver)null, out instance);
         }
 
         public bool TryGetInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, out object instance)
+        {
+            return TryGetInstance(contract, null, new IoCArgumentResolverDelegateWrapper( argResolver), out instance);
+        }
+
+        public bool TryGetInstance(Type contract, IIoCArgumentResolver argResolver, out object instance)
         {
             return TryGetInstance(contract, null, argResolver, out instance);
         }
 
         public bool TryGetInstance(Type contract, string key, ResolveConstructorArgumentDelegate argResolver, out object instance)
+        {
+            return TryGetInstance(contract, key, new IoCArgumentResolverDelegateWrapper(argResolver), out instance);
+        }
+
+        public bool TryGetInstance(Type contract, string key, IIoCArgumentResolver argResolver, out object instance)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
 
@@ -279,17 +311,39 @@ namespace FrodLib.IoC
         /// <returns>True if instance was found</returns>
         public bool TryGetInstance<T>(out T instance) where T : class
         {
-            return TryGetInstance(null, null, out instance);
+            return TryGetInstance(null, (IIoCArgumentResolver) null, out instance);
         }
 
         public bool TryGetInstance<T>(ResolveConstructorArgumentDelegate argResolver, out T instance) where T : class
+        {
+            return TryGetInstance(null, new IoCArgumentResolverDelegateWrapper(argResolver), out instance);
+        }
+
+        public bool TryGetInstance<T>(IIoCArgumentResolver argResolver, out T instance) where T : class
         {
             return TryGetInstance(null, argResolver, out instance);
         }
 
         public bool TryGetInstance<T>(string key, out T instance) where T : class
         {
-            return TryGetInstance(key, null, out instance);
+            return TryGetInstance(key,(IIoCArgumentResolver) null, out instance);
+        }
+
+        public bool TryGetInstance<T>(string key, IIoCArgumentResolver argResolver, out T instance) where T : class
+        {
+            Type contract = typeof(T);
+
+            object tmpInstance;
+            if (TryGetInstance(contract, key, argResolver, out tmpInstance))
+            {
+                instance = tmpInstance as T;
+                return instance != null;
+            }
+            else
+            {
+                instance = null;
+                return false;
+            }
         }
 
         public bool TryGetInstance<T>(string key, ResolveConstructorArgumentDelegate argResolver, out T instance) where T : class
@@ -379,7 +433,7 @@ namespace FrodLib.IoC
 
         #endregion;
 
-        private IEnumerable GetManyInstances(Type type, ResolveConstructorArgumentDelegate argResolver)
+        private IEnumerable GetManyInstances(Type type, IIoCArgumentResolver argResolver)
         {
             var castMethod = typeof(Enumerable).GetTypeInfo().GetDeclaredMethod("Cast");
             var caxtGenericMethod = castMethod.MakeGenericMethod(new Type[] { type });
@@ -397,10 +451,15 @@ namespace FrodLib.IoC
 
         public void Fill<T>(T instance) where T : class
         {
-            Fill(instance, null);
+            Fill(instance, (IIoCArgumentResolver) null);
         }
 
         public void Fill<T>(T instance, ResolveConstructorArgumentDelegate argResolver) where T : class
+        {
+            Fill(instance, new IoCArgumentResolverDelegateWrapper(argResolver));
+        }
+
+        public void Fill<T>(T instance, IIoCArgumentResolver argResolver) where T : class
         {
             ArgumentValidator.IsNotNull(instance, nameof(instance));
 
@@ -506,5 +565,28 @@ namespace FrodLib.IoC
 
         #endregion
 
+
+        private class IoCArgumentResolverDelegateWrapper : IIoCArgumentResolver
+        {
+            private readonly ResolveConstructorArgumentDelegate m_resolverDelegate;
+
+            public IoCArgumentResolverDelegateWrapper(ResolveConstructorArgumentDelegate resolverDelegate)
+            {
+                m_resolverDelegate = resolverDelegate;
+            }
+
+            public bool Resolve(int argIndex, string argName, Type argType, out object argValue)
+            {
+                if(m_resolverDelegate != null)
+                {
+                    return m_resolverDelegate(argIndex, argName, argType, out argValue);
+                }
+                else
+                {
+                    argValue = null;
+                    return false;
+                }
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace FrodLib.IoC
 
         private interface IFrodIoCContainerItem
         {
-            object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects);
+            object CreateInstance(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects);
 
             Type Contract { get; }
             Type ImplementationType { get; }
@@ -23,7 +23,7 @@ namespace FrodLib.IoC
 
         private interface IIoCAsyncContainerItem : IFrodIoCContainerItem
         {
-            Task<object> CreateInstanceAsync(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects);
+            Task<object> CreateInstanceAsync(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects);
         }
 
         private abstract class IoCContainerItemBase : IFrodIoCContainerItem
@@ -33,7 +33,7 @@ namespace FrodLib.IoC
             public virtual Type ImplementationType { get; protected set; }
 
 
-            public abstract object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects);
+            public abstract object CreateInstance(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects);
            
         }
 
@@ -45,7 +45,7 @@ namespace FrodLib.IoC
 
             }
 
-            public async Task<object> CreateInstanceAsync(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects)
+            public async Task<object> CreateInstanceAsync(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
             {
                 var methodParams = m_factoryFunc.GetMethodInfo().GetParameters();
                 var args = Args;
@@ -95,7 +95,7 @@ namespace FrodLib.IoC
                 m_instanceCreator = instanceCreator;
             }
 
-            public override object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
+            public override object CreateInstance(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
             {
                 CheckCircularReference(ImplementationType);
 
@@ -128,7 +128,7 @@ namespace FrodLib.IoC
                 m_registry = registry;
             }
 
-            public override object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
+            public override object CreateInstance(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
             {
                 if (m_instance == null)
                 {
@@ -155,7 +155,7 @@ namespace FrodLib.IoC
                 m_instance = instance;
             }
 
-            public override object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
+            public override object CreateInstance(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
             {
                 return m_instance;
             }
@@ -177,7 +177,7 @@ namespace FrodLib.IoC
                 ImplementationType = factoryFunc.GetType();
             }
 
-            public override object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
+            public override object CreateInstance(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
             {
                 var methodParams = m_factoryFunc.GetMethodInfo().GetParameters();
                 var args = Args;
@@ -225,7 +225,7 @@ namespace FrodLib.IoC
 
             public object[] Args { get; private set; }
            
-            public override object CreateInstance(Type contract, ResolveConstructorArgumentDelegate argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
+            public override object CreateInstance(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects, bool useResolvedObjects)
             {
                 try
                 {

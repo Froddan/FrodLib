@@ -9,15 +9,17 @@ namespace FrodLib.CQI.Commands
 {
     [Metadata("Command", "History")]
     [Metadata("Description", "Shows the command history")]
-    class HistoryCommand : ICQICommand
+    class HistoryCommand : ICQIInternalCommand
     {
         public void ExecuteCommand(ICommandManagerOutput commandPrompt, string[] args)
         {
-            if (commandPrompt is ICommandManager)
-            {
-                var prompt = (ICommandManager)commandPrompt;
-                prompt.PrintCommandHistory();
-            }
+            throw new NotImplementedException();
         }
+
+        void ICQIInternalCommand.ExecuteCommand(ICommandManager commandManager, ICommandManagerOutput commandOutput, string[] args)
+        {
+            commandManager.PrintCommandHistory();
+        }
+
     }
 }

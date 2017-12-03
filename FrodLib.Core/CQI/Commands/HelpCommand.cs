@@ -9,16 +9,16 @@ namespace FrodLib.CQI.Commands
 {
     [Metadata("Command", "Help")]
     [Metadata("Description", "Lists all available commands")]
-    class HelpCommand : ICQICommand
+    class HelpCommand : ICQIInternalCommand
     {
         public void ExecuteCommand(ICommandManagerOutput commandPrompt, string[] args)
         {
-            if (commandPrompt is ICommandManager)
-            {
-                var prompt = (ICommandManager)commandPrompt;
-                prompt.PrintAvailableCommands();
-                
-            }
+            throw new NotImplementedException();
+        }
+
+        void ICQIInternalCommand.ExecuteCommand(ICommandManager commandManager, ICommandManagerOutput commandOutput, string[] args)
+        {
+            commandManager.PrintAvailableCommands();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace FrodLib.CQI
         [ThreadStatic]
         private static List<string> s_commandHistory;
 
-        public CommandManager() : this(null)
+        protected CommandManager() : this(null)
         {
         }
 
@@ -31,6 +31,7 @@ namespace FrodLib.CQI
             m_container.Fill(this);
             m_promptCommands = new List<IoCLazy<ICQICommand, ICQICommandData>>(m_promptCommands);
             this.m_commandManagerOutput = commandOutput ?? this as ICommandManagerOutput;
+            InitializeCommandHistory();
         }
 
         private void CommandCatalogs_CommandCatalogsChanged(object sender, EventArgs e)
@@ -87,7 +88,7 @@ namespace FrodLib.CQI
             s_commandHistory = new List<string>();
         }
 
-        public virtual void ExecuteCommand(string commandText)
+        public void ExecuteCommand(string commandText)
         {
             if (string.IsNullOrWhiteSpace(commandText))
             {
@@ -95,71 +96,32 @@ namespace FrodLib.CQI
             }
             else
             {
-                List<string> args = new List<string>();
-                string promptCommand = commandText.Trim();
-                bool firstQuoteFound = false;
-                for (int i = 0; i < promptCommand.Length; i++)
+                var output = m_commandManagerOutput;
+                if (output == null)
                 {
-                    if (promptCommand[i] == '"')
-                    {
-                        if (!firstQuoteFound)
-                        {
-                            firstQuoteFound = true;
-                        }
-                        else
-                        {
-                            string arg = promptCommand.Substring(1, i - 1);
-                            promptCommand = promptCommand.Remove(0, i + 1).TrimStart();
-                            args.Add(arg);
-                            i = -1;
-                            firstQuoteFound = false;
-                        }
-                    }
-                    else if (!firstQuoteFound && Char.IsWhiteSpace(promptCommand[i]))
-                    {
-                        string arg = promptCommand.Substring(0, i);
-                        promptCommand = promptCommand.Remove(0, i).TrimStart();
-                        args.Add(arg);
-                        i = -1;
-                    }
-                    else if (i == promptCommand.Length - 1)
-                    {
-                        if (firstQuoteFound)
-                        {
-                            args.AddRange(promptCommand.Replace("\"", "").Split(' '));
-                        }
-                        else
-                        {
-                            args.Add(promptCommand);
-                        }
-                    }
+                    throw new InvalidOperationException("No output has been defined");
                 }
-                string proptCommand = args.First();
-
-                // EchoPromptCommand();
 
                 bool commandFound = false;
 
-                string[] proptCommandArgs = args.Skip(1).ToArray();
+                string commandName;
+                string[] promptCommandArgs;
+
+                string promptCommand = commandText.Trim();
+                ParseCommand(promptCommand, out commandName, out promptCommandArgs);
+
                 foreach (var command in m_promptCommands)
                 {
-                    if (command.Metadata.Command.Equals(proptCommand, StringComparison.CurrentCultureIgnoreCase))
+                    if (command.Metadata.Command.Equals(commandName, StringComparison.CurrentCultureIgnoreCase))
                     {
-                        try
-                        {
-                            command.Value.ExecuteCommand(m_commandManagerOutput, proptCommandArgs);
-                        }
-                        catch (Exception ex)
-                        {
-                            m_commandManagerOutput.WriteLine("Command finished with error: " + ex.Message);
-                        }
+                        OnExecuteCommand(command.Value, output, promptCommandArgs);
                         commandFound = true;
                     }
                 }
 
                 if (!commandFound)
                 {
-                    m_commandManagerOutput.WriteLine("Couldn't find the command '" + proptCommand + "'");
+                    output.WriteLine("Couldn't find the command '" + commandName + "'");
                 }
 
                 if (CommandHistoryEnabled)
@@ -171,6 +133,70 @@ namespace FrodLib.CQI
                     }
                 }
 
+            }
+        }
+
+        protected virtual void ParseCommand(string commandText, out string commandName, out string[] commandArguments)
+        {
+            List<string> args = new List<string>();
+            bool firstQuoteFound = false;
+            for (int i = 0; i < commandText.Length; i++)
+            {
+                if (commandText[i] == '"')
+                {
+                    if (!firstQuoteFound)
+                    {
+                        firstQuoteFound = true;
+                    }
+                    else
+                    {
+                        string arg = commandText.Substring(1, i - 1);
+                        commandText = commandText.Remove(0, i + 1).TrimStart();
+                        args.Add(arg);
+                        i = -1;
+                        firstQuoteFound = false;
+                    }
+                }
+                else if (!firstQuoteFound && Char.IsWhiteSpace(commandText[i]))
+                {
+                    string arg = commandText.Substring(0, i);
+                    commandText = commandText.Remove(0, i).TrimStart();
+                    args.Add(arg);
+                    i = -1;
+                }
+                else if (i == commandText.Length - 1)
+                {
+                    if (firstQuoteFound)
+                    {
+                        args.AddRange(commandText.Replace("\"", "").Split(' '));
+                    }
+                    else
+                    {
+                        args.Add(commandText);
+                    }
+                }
+            }
+
+            commandName = args.First();
+            commandArguments = args.Skip(1).ToArray();
+        }
+
+        protected virtual void OnExecuteCommand(ICQICommand command, ICommandManagerOutput output, string[] commandArgs)
+        {
+            try
+            {
+                if (command is ICQIInternalCommand)
+                {
+                    ((ICQIInternalCommand)command).ExecuteCommand(this, output, commandArgs);
+                }
+                else
+                {
+                    command.ExecuteCommand(output, commandArgs);
+                }
+            }
+            catch (Exception ex)
+            {
+                m_commandManagerOutput.WriteLine("Command finished with error: " + ex.Message);
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace FrodLib.Utils
@@ -46,7 +47,7 @@ namespace FrodLib.Utils
 
         }
 
-        protected sealed override void RaisePropertyChanged(string propertyName)
+        protected sealed override void RaisePropertyChanged([CallerMemberName]string propertyName = null)
         {
             if (NotificationSuspended)
             {

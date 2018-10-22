@@ -15,13 +15,15 @@ namespace FrodLib.IoC
 {
     internal sealed partial class DefaultIoCRegistry : IDefaultIoCContainer, IDisposable
     {
-        private readonly Dictionary<Type, IImmutableList<IFrodIoCContainerItem>> _map;
+        private readonly Dictionary<Type, IImmutableList<IFrodIoCContainerItem>> m_contractImplementations;
+        private readonly Dictionary<Type, IImmutableList<IFrodIocDecoratorItem>> m_contractDecorations;
         private readonly IoCContainer m_container;
 
         public DefaultIoCRegistry(IoCContainer container)
         {
             m_container = container;
-            _map = new Dictionary<Type, IImmutableList<IFrodIoCContainerItem>>();
+            m_contractImplementations = new Dictionary<Type, IImmutableList<IFrodIoCContainerItem>>();
+            m_contractDecorations = new Dictionary<Type, IImmutableList<IFrodIocDecoratorItem>>();
         }
 
         public object CreateInstance(Type contract)
@@ -72,7 +74,7 @@ namespace FrodLib.IoC
             if (type == null) return false;
 
             IImmutableList<IFrodIoCContainerItem> implementations;
-            if (_map.TryGetValue(type, out implementations)) return implementations.Count > 0;
+            if (m_contractImplementations.TryGetValue(type, out implementations)) return implementations.Count > 0;
             else return false;
         }
 
@@ -113,40 +115,6 @@ namespace FrodLib.IoC
             return new IoCContainerMapResult(this, contract, implItem, typesMappedToContract);
         }
 
-        internal IIoCContainerMapResult RegisterDecorator(Type decoratorContract, Type decoratorImplementation, object[] args)
-        {
-            throw new NotImplementedException();
-
-            ValidateContractImplementationMatch(decoratorContract, decoratorImplementation);
-        }
-
-        private IList<Type> AddContainerItemToMap(Type contract, IFrodIoCContainerItem implItem)
-        {
-            IList<Type> typesMappedToContract = null;
-
-            IImmutableList<IFrodIoCContainerItem> implementations;
-            if (_map.TryGetValue(contract, out implementations))
-            {
-                if (implementations.Count > 0 && implementations[0] is IoCRegistredInstanceContainerItem)
-                {
-                    implementations = implementations.Insert(1, implItem);
-                }
-                else
-                {
-                    implementations = implementations.Insert(0, implItem);
-                }
-                typesMappedToContract = implementations.Select(ci => ci.ImplementationType).ToArray();
-                _map[contract] = implementations;
-            }
-            else
-            {
-                _map.Add(contract, ImmutableList.Create(implItem));
-                typesMappedToContract = new Type[] { implItem.ImplementationType };
-            }
-
-            return typesMappedToContract;
-        }
-
         public void RegisterInstance(Type contract, object instance)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
@@ -156,7 +124,7 @@ namespace FrodLib.IoC
             var registredInstanceItem = new IoCRegistredInstanceContainerItem(contract, instance);
 
             IImmutableList<IFrodIoCContainerItem> implementations;
-            if (_map.TryGetValue(contract, out implementations))
+            if (m_contractImplementations.TryGetValue(contract, out implementations))
             {
                 if (implementations.Count > 0 && implementations[0] is IoCRegistredInstanceContainerItem)
                 {
@@ -168,40 +136,12 @@ namespace FrodLib.IoC
                     implementations = implementations.Insert(0, registredInstanceItem);
                 }
 
-                _map[contract] = implementations;
+                m_contractImplementations[contract] = implementations;
             }
             else
             {
-                _map.Add(contract, ImmutableList.Create<IFrodIoCContainerItem>(registredInstanceItem));
+                m_contractImplementations.Add(contract, ImmutableList.Create<IFrodIoCContainerItem>(registredInstanceItem));
             }
-        }
-
-        internal IEnumerable<object> CreateManyInstance(Type contract, IIoCArgumentResolver argResolver)
-        {
-            ArgumentValidator.IsNotNull(contract, nameof(contract));
-            var resolvedObjects = new Dictionary<Type, object>();
-            var instances = _GetManyInstances(contract, argResolver, resolvedObjects);
-            //bool @continue = false;
-            //HashSet<object> methodInjectedForObject = new HashSet<object>();
-            //do
-            //{
-            //    @continue = false;
-            //    foreach (var val in resolvedObjects.Values.ToArray())
-            //    {
-            //        if (methodInjectedForObject.Contains(val))
-            //        {
-            //            continue;
-            //        }
-            //        else
-            //        {
-            //            ResolveObjectsByMethodInjection(val, argResolver, resolvedObjects);
-            //            methodInjectedForObject.Add(val);
-            //            @continue = true;
-            //        }
-            //    }
-            //} while (@continue);
-
-            return instances;
         }
 
         public bool RemoveSingleInstance(Type contract)
@@ -209,7 +149,7 @@ namespace FrodLib.IoC
             ArgumentValidator.IsNotNull(contract, nameof(contract));
 
             IImmutableList<IFrodIoCContainerItem> implementations;
-            if (_map.TryGetValue(contract, out implementations))
+            if (m_contractImplementations.TryGetValue(contract, out implementations))
             {
                 if (implementations.Count > 0)
                 {
@@ -218,7 +158,7 @@ namespace FrodLib.IoC
                     if (item is IoCRegistredInstanceContainerItem)
                     {
                         //Remove instance
-                        _map[contract] = implementations.RemoveAt(0);
+                        m_contractImplementations[contract] = implementations.RemoveAt(0);
                         return true;
                     }
                     else if ((singleInstanceItem = item as IoCSingleInstanceContainerItem) != null)
@@ -239,9 +179,9 @@ namespace FrodLib.IoC
 
             bool removed = false;
 
-            if (_map.ContainsKey(type))
+            if (m_contractImplementations.ContainsKey(type))
             {
-                removed |= _map.Remove(type);
+                removed |= m_contractImplementations.Remove(type);
             }
 
             return removed;
@@ -260,7 +200,7 @@ namespace FrodLib.IoC
             if (useResolvedObjects && resolvedObjects.TryGetValue(initialContract, out obj))
             {
             }
-            else if (isFirstCallForContract && _map.TryGetValue(contract, out implementations) && implementations.Any())
+            else if (isFirstCallForContract && m_contractImplementations.TryGetValue(contract, out implementations) && implementations.Any())
             {
                 obj = implementations[0].CreateInstance(contract, argResolver, resolvedObjects, true);
             }
@@ -295,29 +235,6 @@ namespace FrodLib.IoC
             return obj;
         }
 
-        private class GenericItemCreator<T>
-        {
-            private IFrodIoCContainerItem containerItem;
-            private Type contract;
-            private IIoCArgumentResolver argResolver;
-            private IDictionary<Type, object> resolvedObjects;
-
-
-            public GenericItemCreator(IFrodIoCContainerItem containerItem, Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
-            {
-                this.containerItem = containerItem;
-                this.contract = contract;
-                this.argResolver = argResolver;
-                this.resolvedObjects = resolvedObjects;
-            }
-
-            public T CreateInstance()
-            {
-                var obj = containerItem.CreateInstance(contract, argResolver, resolvedObjects, false);
-                return (T)obj;
-            }
-        }
-
         internal IEnumerable<object> _GetManyInstances(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
@@ -330,7 +247,7 @@ namespace FrodLib.IoC
             if (contractTypeInfo.IsGenericType && contract.GetGenericTypeDefinition() == typeof(Lazy<>))
             {
                 var genericArgumentContract = contractTypeInfo.GenericTypeArguments.First();
-                if (_map.TryGetValue(genericArgumentContract, out implementations) && implementations.Any())
+                if (m_contractImplementations.TryGetValue(genericArgumentContract, out implementations) && implementations.Any())
                 {
                     foreach (var implementation in implementations)
                     {
@@ -341,7 +258,7 @@ namespace FrodLib.IoC
             }
             else
             {
-                if (_map.TryGetValue(contract, out implementations) && implementations.Any())
+                if (m_contractImplementations.TryGetValue(contract, out implementations) && implementations.Any())
                 {
                     foreach (var implementation in implementations)
                     {
@@ -353,6 +270,72 @@ namespace FrodLib.IoC
             }
         }
 
+        internal IEnumerable<object> CreateManyInstance(Type contract, IIoCArgumentResolver argResolver)
+        {
+            ArgumentValidator.IsNotNull(contract, nameof(contract));
+            var resolvedObjects = new Dictionary<Type, object>();
+            var instances = _GetManyInstances(contract, argResolver, resolvedObjects);
+            
+            return instances;
+        }
+
+        private void RegisterDecorator(Type decoratorContract, IFrodIocDecoratorItem decoratorImplementation)
+        {
+            
+            IImmutableList<IFrodIocDecoratorItem> implementations;
+            if (m_contractDecorations.TryGetValue(decoratorContract, out implementations))
+            {
+                if (implementations.Count > 0 && implementations[0] is IoCRegistredInstanceContainerItem)
+                {
+                    implementations = implementations.Insert(1, decoratorImplementation);
+                }
+                else
+                {
+                    implementations = implementations.Insert(0, decoratorImplementation);
+                }
+                m_contractDecorations[decoratorContract] = implementations;
+            }
+            else
+            {
+                m_contractDecorations.Add(decoratorContract, ImmutableList.Create(decoratorImplementation));
+            }
+        }
+
+        internal void RegisterDecorator(Type decoratorContract, Type decoratorImplementation)
+        {
+            ValidateContractImplementationMatch(decoratorContract, decoratorImplementation);
+
+            IFrodIocDecoratorItem decoratorItem = new IocDecoratorItem(decoratorContract, this, decoratorImplementation);
+
+            RegisterDecorator(decoratorContract, decoratorItem);
+        }
+
+        private IList<Type> AddContainerItemToMap(Type contract, IFrodIoCContainerItem implItem)
+        {
+            IList<Type> typesMappedToContract = null;
+
+            IImmutableList<IFrodIoCContainerItem> implementations;
+            if (m_contractImplementations.TryGetValue(contract, out implementations))
+            {
+                if (implementations.Count > 0 && implementations[0] is IoCRegistredInstanceContainerItem)
+                {
+                    implementations = implementations.Insert(1, implItem);
+                }
+                else
+                {
+                    implementations = implementations.Insert(0, implItem);
+                }
+                typesMappedToContract = implementations.Select(ci => ci.ImplementationType).ToArray();
+                m_contractImplementations[contract] = implementations;
+            }
+            else
+            {
+                m_contractImplementations.Add(contract, ImmutableList.Create(implItem));
+                typesMappedToContract = new Type[] { implItem.ImplementationType };
+            }
+
+            return typesMappedToContract;
+        }
         private Delegate CreatelazyFactoryDelegate(Type contract, IFrodIoCContainerItem implementation, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
         {
             var creatorType = typeof(GenericItemCreator<>);
@@ -366,22 +349,6 @@ namespace FrodLib.IoC
             var call = Expression.Call(instance, typeGenericCreatorMethod);
             lambda = Expression.Lambda(Expression.Convert(call, contract)).Compile();
             return lambda;
-        }
-
-        private void ResolveObjectsByMethodInjection(object obj, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
-        {
-            var objTypeInfo = obj.GetType().GetTypeInfo();
-            var methods = objTypeInfo.DeclaredMethods;
-            foreach (var method in methods)
-            {
-                var iocInjectAttr = method.GetCustomAttribute<IoCInjectAttribute>();
-                if (iocInjectAttr != null)
-                {
-                    var methodParamTypes = method.GetParameters();
-                    var args = GetArguments(null, methodParamTypes, null, false, resolvedObjects);
-                    method.Invoke(obj, args);
-                }
-            }
         }
 
         private object[] GetArguments(Type contract, ParameterInfo[] parameters, IIoCArgumentResolver argResolver, bool resolveInjectByMethod, IDictionary<Type, object> resolvedObjects)
@@ -483,6 +450,22 @@ namespace FrodLib.IoC
             return (attrib != null);
         }
 
+        private void ResolveObjectsByMethodInjection(object obj, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
+        {
+            var objTypeInfo = obj.GetType().GetTypeInfo();
+            var methods = objTypeInfo.DeclaredMethods;
+            foreach (var method in methods)
+            {
+                var iocInjectAttr = method.GetCustomAttribute<IoCInjectAttribute>();
+                if (iocInjectAttr != null)
+                {
+                    var methodParamTypes = method.GetParameters();
+                    var args = GetArguments(null, methodParamTypes, null, false, resolvedObjects);
+                    method.Invoke(obj, args);
+                }
+            }
+        }
+
         private void ValidateContractFactory(Type contract, Delegate implFactory)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
@@ -503,6 +486,7 @@ namespace FrodLib.IoC
                 throw new ArgumentException("The return type: " + returnType + " is not assignable to contract: " + contract);
             }
         }
+
         private void ValidateContractImplementationMatch(Type contract, Type implementation)
         {
             ArgumentValidator.IsNotNull(contract, nameof(contract));
@@ -517,14 +501,37 @@ namespace FrodLib.IoC
                 throw new ArgumentException("The implementation type: " + implementation + " is not assignable to contract: " + contract);
             }
         }
+
+        private class GenericItemCreator<T>
+        {
+            private IIoCArgumentResolver argResolver;
+            private IFrodIoCContainerItem containerItem;
+            private Type contract;
+            private IDictionary<Type, object> resolvedObjects;
+
+
+            public GenericItemCreator(IFrodIoCContainerItem containerItem, Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects)
+            {
+                this.containerItem = containerItem;
+                this.contract = contract;
+                this.argResolver = argResolver;
+                this.resolvedObjects = resolvedObjects;
+            }
+
+            public T CreateInstance()
+            {
+                var obj = containerItem.CreateInstance(contract, argResolver, resolvedObjects, false);
+                return (T)obj;
+            }
+        }
         #region SUPPORT CLASSES
 
         private void UpdateContainerItem(Type contract, IFrodIoCContainerItem mappedItem, IFrodIoCContainerItem singleInstanceContainerItem)
         {
             IImmutableList<IFrodIoCContainerItem> implementations;
-            if (_map.TryGetValue(contract, out implementations))
+            if (m_contractImplementations.TryGetValue(contract, out implementations))
             {
-                _map[contract] = implementations.Replace(mappedItem, singleInstanceContainerItem);
+                m_contractImplementations[contract] = implementations.Replace(mappedItem, singleInstanceContainerItem);
             }
         }
 
@@ -587,7 +594,7 @@ namespace FrodLib.IoC
             {
                 if (disposing)
                 {
-                    _map.Clear();
+                    m_contractImplementations.Clear();
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.

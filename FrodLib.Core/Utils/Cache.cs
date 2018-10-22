@@ -204,10 +204,11 @@ namespace FrodLib.Utils
         /// If the key is not found, no exception is thrown, the statement is just ignored.
         /// </summary>
         /// <param name="key">The cache-key to remove.</param>
-        public void Remove(string key)
+        public bool Remove(string key)
         {
-            if (disposed) return;
+            if (disposed) return false;
 
+            bool removed = false;
             locker.EnterWriteLock();
             try
             {
@@ -217,11 +218,12 @@ namespace FrodLib.Utils
                     try { timers[key].Dispose(); }
                     catch { }
                     timers.Remove(key);
-                    cache.Remove(key);
+                    removed = cache.Remove(key);
                     OnItemRemoved(key, objToBeremoved);
                 }
             }
             finally { locker.ExitWriteLock(); }
+            return removed;
         }
 
         private void OnItemRemoved(string key, T objToBeremoved)

@@ -1,4 +1,4 @@
-﻿using FrodLib.Extensions;
+﻿using FrodLib.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

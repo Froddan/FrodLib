@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.Pipes;
 using System.Linq;
 using System.Reflection;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace FrodLib.CQI
         private bool isRunning = true;
         [ThreadStatic]
         private static PipeStreamString s_streamString;
+
+        public string PipeName { get { return m_pipeName; } }
 
         public NamedPipedCommandManangerServer()
             : this(Assembly.GetEntryAssembly().GetName().Name, 1)
@@ -65,8 +68,13 @@ namespace FrodLib.CQI
             {
                 using (m_pipeServers[threadIndex] = new NamedPipeServerStream(m_pipeName, PipeDirection.InOut, m_maxPipeServers, PipeTransmissionMode.Message, PipeOptions.Asynchronous))
                 {
-                    bool synchronized = false;
                     var pipeServer = m_pipeServers[threadIndex];
+
+                    PipeSecurity pipeSa = new PipeSecurity();
+                    pipeSa.SetAccessRule(new PipeAccessRule("Everyone", PipeAccessRights.ReadWrite, AccessControlType.Allow));
+                    pipeServer.SetAccessControl(pipeSa);
+
+                    bool synchronized = false;
                     System.Diagnostics.Trace.TraceInformation("Awaiting client connection for pipe '" + m_pipeName + "::" + threadIndex + "'");
                     while (isRunning && !pipeServer.IsConnected)
                     {

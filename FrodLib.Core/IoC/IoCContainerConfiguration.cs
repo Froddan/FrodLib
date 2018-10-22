@@ -100,18 +100,18 @@ namespace FrodLib.IoC
         #endregion REGISTER TYPE
 
         #region Register Decorator
-/*
-        internal IIoCContainerMapResult RegisterDecorator<TContract, TImplementation>(params object[] args)
+
+        internal void RegisterDecorator<TContract, TDecorator>()
            where TContract : class
-           where TImplementation : TContract
+           where TDecorator : TContract
         {
-            return Register(typeof(TContract), typeof(TImplementation), args);
+            RegisterDecorator(typeof(TContract), typeof(TDecorator));
         }
 
-        internal IIoCContainerMapResult RegisterDecorator(Type contract, Type implementation, params object[] args)
+        internal void RegisterDecorator(Type contract, Type decorator)
         {
-            return m_defaultRegistry.RegisterDecorator(contract, implementation, args);
-        }*/
+            m_defaultRegistry.RegisterDecorator(contract, decorator);
+        }
 
         #endregion
 

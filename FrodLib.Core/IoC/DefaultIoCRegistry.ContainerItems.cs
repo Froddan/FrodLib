@@ -21,9 +21,39 @@ namespace FrodLib.IoC
             
         }
 
+        private interface IFrodIocDecoratorItem
+        {
+            Type Contract { get; }
+            Type DecoratorType { get; }
+
+            object ApplyDecorator(object instance, IIoCArgumentResolver argResolver);
+        }
+
+
         private interface IIoCAsyncContainerItem : IFrodIoCContainerItem
         {
             Task<object> CreateInstanceAsync(Type contract, IIoCArgumentResolver argResolver, IDictionary<Type, object> resolvedObjects);
+        }
+
+        private class IocDecoratorItem : IFrodIocDecoratorItem
+        {
+            private readonly DefaultIoCRegistry m_registry;
+
+            public IocDecoratorItem(Type decoratorContract, DefaultIoCRegistry registry, Type decoratorImplementation)
+            {
+                m_registry = registry;
+                this.Contract = decoratorContract;
+                this.DecoratorType = decoratorImplementation;
+            }
+
+            public Type Contract { get; private set; }
+
+            public Type DecoratorType { get; private set; }
+
+            public object ApplyDecorator(object instance, IIoCArgumentResolver argResolver)
+            {
+                return instance;
+            }
         }
 
         private abstract class IoCContainerItemBase : IFrodIoCContainerItem
@@ -219,7 +249,7 @@ namespace FrodLib.IoC
                 }
                 else
                 {
-                    throw new InvalidOperationException(StringResources.ImplementationTypeIsNotAnInstantiatableClass);
+                    throw new IoCException(contract,StringResources.ImplementationTypeIsNotAnInstantiatableClass);
                 }
             }
 

@@ -7,7 +7,7 @@ namespace FrodLib.Utils
 {
     public static class ArgumentValidator
     {
-        public static void IsNotNull<TClass>(TClass argValue, string argName) where TClass : class
+        public static void IsNotNull<TClass>(this TClass argValue, string argName) where TClass : class
         {
             if (argValue == null)
             {
@@ -15,7 +15,7 @@ namespace FrodLib.Utils
             }
         }
 
-        public static void IsNotNull<TStruct>(TStruct? argValue, string argName) where TStruct : struct
+        public static void IsNotNull<TStruct>(this TStruct? argValue, string argName) where TStruct : struct
         {
             if (argValue == null)
             {
@@ -23,7 +23,7 @@ namespace FrodLib.Utils
             }
         }
 
-        public static void IsGreaterThen<TType>(TType argValue, string argName, TType minAllowedValue) where TType : IComparable<TType>
+        public static void IsGreaterThen<TType>(this TType argValue, string argName, TType minAllowedValue) where TType : IComparable<TType>
         {
             if (argValue.CompareTo(minAllowedValue) <= 0)
             {
@@ -31,7 +31,7 @@ namespace FrodLib.Utils
             }
         }
 
-        public static void IsGreaterThenOrEqual<TType>(TType argValue, string argName, TType minAllowedValue) where TType : IComparable<TType>
+        public static void IsGreaterThenOrEqual<TType>(this TType argValue, string argName, TType minAllowedValue) where TType : IComparable<TType>
         {
             if (argValue.CompareTo(minAllowedValue) < 0)
             {
@@ -39,7 +39,7 @@ namespace FrodLib.Utils
             }
         }
 
-        public static void IsLesserThen<TType>(TType argValue, string argName, TType maxAllowedValue) where TType : IComparable<TType>
+        public static void IsLesserThen<TType>(this TType argValue, string argName, TType maxAllowedValue) where TType : IComparable<TType>
         {
             if (argValue.CompareTo(maxAllowedValue) >= 0)
             {
@@ -47,7 +47,7 @@ namespace FrodLib.Utils
             }
         }
 
-        public static void IsLesserThenOrEqual<TType>(TType argValue, string argName, TType maxAllowedValue) where TType : IComparable<TType>
+        public static void IsLesserThenOrEqual<TType>(this TType argValue, string argName, TType maxAllowedValue) where TType : IComparable<TType>
         {
             if (argValue.CompareTo(maxAllowedValue) > 0)
             {
@@ -55,53 +55,29 @@ namespace FrodLib.Utils
             }
         }
 
-        public static void IsInRange<TType>(TType argValue, string argName, TType minAllowedValue, TType maxAllowedValue) where TType : IComparable<TType>
+        public static void IsInRange<TType>(this TType argValue, string argName, TType minAllowedValue, TType maxAllowedValue) where TType : IComparable<TType>
         {
             if (argValue.CompareTo(minAllowedValue) < 0 || argValue.CompareTo(maxAllowedValue) > 0)
             {
                 throw new ArgumentOutOfRangeException(argName, argName + " has to be in range [" + minAllowedValue + "," + maxAllowedValue + "]");
             }
         }
-    }
-}
 
-namespace FrodLib.Extensions
-{
-    public static class ArgumentValidatorExtensions
-    {
-        public static void IsNotNull<TClass>(this TClass argValue, string argName) where TClass : class
+        public static void IsEqualTo<TType>(this TType argValue, string argName, TType otherValue)
         {
-            FrodLib.Utils.ArgumentValidator.IsNotNull(argValue, argName);
+            if (!argValue.Equals(otherValue))
+            {
+                throw new ArgumentException(argName + " is not equal to '"+ otherValue + "'", argName);
+            }
         }
 
-        public static void IsNotNull<TStruct>(this TStruct? argValue, string argName) where TStruct : struct
+        public static void IsNotEqualTo<TType>(this TType argValue, string argName, TType otherValue)
         {
-            FrodLib.Utils.ArgumentValidator.IsNotNull(argValue, argName);
-        }
-
-        public static void IsGreaterThen<TType>(this TType argValue, string argName, TType minAllowedValue) where TType : IComparable<TType>
-        {
-            FrodLib.Utils.ArgumentValidator.IsGreaterThen(argValue, argName, minAllowedValue);
-        }
-
-        public static void IsGreaterThenOrEqual<TType>(this TType argValue, string argName, TType minAllowedValue) where TType : IComparable<TType>
-        {
-            FrodLib.Utils.ArgumentValidator.IsGreaterThenOrEqual(argValue, argName, minAllowedValue);
-        }
-
-        public static void IsLesserThen<TType>(this TType argValue, string argName, TType maxAllowedValue) where TType : IComparable<TType>
-        {
-            FrodLib.Utils.ArgumentValidator.IsLesserThen(argValue, argName, maxAllowedValue);
-        }
-
-        public static void IsLesserThenOrEqual<TType>(this TType argValue, string argName, TType maxAllowedValue) where TType : IComparable<TType>
-        {
-            FrodLib.Utils.ArgumentValidator.IsLesserThenOrEqual(argValue, argName, maxAllowedValue);
-        }
-
-        public static void IsInRange<TType>(this TType argValue, string argName, TType minAllowedValue, TType maxAllowedValue) where TType : IComparable<TType>
-        {
-            FrodLib.Utils.ArgumentValidator.IsInRange(argValue, argName, minAllowedValue, maxAllowedValue);
+            if (argValue.Equals(otherValue))
+            {
+                throw new ArgumentException(argName + " is equal to '" + otherValue + "'", argName);
+            }
         }
     }
 }
+
